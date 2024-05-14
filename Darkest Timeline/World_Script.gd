@@ -1,0 +1,29 @@
+extends Node2D
+var Players
+var Teams
+
+var BoardSize
+var BoardX
+var BoardY
+var Tile_Counter
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var Tile = preload("res://tile.tscn")
+	Players = get_tree().get_nodes_in_group("Players")
+	Teams = 2
+	BoardSize = Teams * 5
+	if(BoardSize % 2 == 0):
+		BoardSize = BoardSize-1
+	for x in BoardSize:
+		for y in BoardSize:
+			var NewTile = Tile.new()
+			NewTile.transform.origin = Vector2(x,y)
+			Tile_Counter = Tile_Counter+1
+	print_debug(Tile_Counter)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
