@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cby7yfa6u61r7"]
-
-[ext_resource type="Script" path="res://World_Script.gd" id="1_i3s83"]
-
-[node name="World" type="Node2D"]
-script = ExtResource("1_i3s83")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.04, 0.04)

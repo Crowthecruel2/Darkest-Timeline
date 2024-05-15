@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 var Players
 var Teams
 @onready var Tile = preload("res://tile.tscn")
@@ -12,19 +12,19 @@ var Tile_Counter = 0
 #class Team(self, teamName,score, team):
 func _ready():
 	Players = get_tree().get_nodes_in_group("Players")
-	Teams = 69
+	Teams = 2
 	BoardSize = Teams * 5
 	if(BoardSize % 2 == 0):
 		BoardSize = BoardSize-1
 	for x in BoardSize:
 		
-		for y in BoardSize:
+		for z in BoardSize:
 			
-			if((BoardSize-1)/2 == x && (BoardSize-1)/2 == y):
-				Camera.transform.origin = Vector2(0,0)
+			if((BoardSize-1)/2 == x && (BoardSize-1)/2 == z):
+				Camera.transform.origin = Vector3(x*2,20,z*2)
 			var NewTile = Tile.instantiate()
 			add_child(NewTile)
-			NewTile.transform.origin = Vector2(0,0)
+			NewTile.transform.origin = Vector3(x*2,0,z*2)
 			Tile_Counter = Tile_Counter+1
 	print_debug(Tile_Counter)
 	
