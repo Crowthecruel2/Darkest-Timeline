@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://by2qwf2w54yps"]
+[gd_scene load_steps=5 format=3 uid="uid://by2qwf2w54yps"]
+
+[ext_resource type="Script" path="res://Tile.gd" id="1_xiv43"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hr7va"]
 blend_mode = 1
@@ -7,12 +9,12 @@ blend_mode = 1
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ncfy7"]
 
-[node name="Tile" type="Node2D"]
+[node name="Tile" type="Node2D" groups=["Tiles"]]
+script = ExtResource("1_xiv43")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 modulate = Color(0.858824, 0.12549, 0.45098, 1)
 self_modulate = Color(0.980392, 0.592157, 0.682353, 1)
-top_level = true
 material = SubResource("CanvasItemMaterial_hr7va")
 scale = Vector2(50, 50)
 mesh = SubResource("QuadMesh_xtmtl")
