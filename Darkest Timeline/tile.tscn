@@ -10,6 +10,8 @@
 script = ExtResource("1_xiv43")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+gravity_scale = 0.5
+linear_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_q11vl")
