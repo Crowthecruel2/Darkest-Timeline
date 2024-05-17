@@ -21,7 +21,7 @@ func _ready():
 			for y in BoardSize:
 				var NewTile = Tile.instantiate()
 				add_child(NewTile)
-				NewTile.transform.origin = Vector3(x*3,y*3,z*3)
+				NewTile.transform.origin = Vector3(x*randf_range(1,5),y*randf_range(1,5),z*randf_range(1,5))
 				Tile_Counter = Tile_Counter+1
 			
 	print_debug(Tile_Counter)
