@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://bjtocdhre1pks"]
+[gd_scene load_steps=2 format=3 uid="uid://bjtocdhre1pks"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5qy3"]
 
 [node name="World" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000833631)
+mesh = SubResource("PlaneMesh_h5qy3")

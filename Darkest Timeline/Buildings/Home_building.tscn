@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://beloch8mrp2jv"]
+
+[ext_resource type="Material" uid="uid://da3b7aotc18l3" path="res://Materials/Home_Building/Home_Building_Main.tres" id="1_wtfpl"]
+[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Home_Building/Home_Building_Legs.tres" id="2_svadq"]
+
+[node name="HomeBuilding" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = ExtResource("1_wtfpl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, 0.5)
+material_override = ExtResource("2_svadq")
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.4, 0.5)
+material_override = ExtResource("2_svadq")
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, -0.5)
+material_override = ExtResource("2_svadq")
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.4, -0.5)
+material_override = ExtResource("2_svadq")
+size = Vector3(0.3, 0.8, 0.3)
