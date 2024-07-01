@@ -34,18 +34,25 @@ func _findTarget():
 	if(self.get_tree().get_nodes_in_group("team1").has(self)):
 		var enemies = self.get_tree().get_nodes_in_group("team2")
 		for x in enemies.size():
-			if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position) || closestEnemy == null):
+			if(closestEnemy != null):
+				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
+					closestEnemy = enemies[x]
+			else:
 				closestEnemy = enemies[x]
+			
 	if(self.get_tree().get_nodes_in_group("team2").has(self)):
 		var enemies = self.get_tree().get_nodes_in_group("team1")
 		for x in enemies.size():
-			if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position) || closestEnemy == null):
+			if(closestEnemy != null):
+				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
+					closestEnemy = enemies[x]
+			else:
 				closestEnemy = enemies[x]
 	return closestEnemy
 
 func _move(target):
 	if(moveType == 0):
-		NavAgent.set_target_location(target.position)
+		NavAgent.target_position = target.position
 		var target_location = NavAgent.get_next_path_position()
 		var target_velocity = (target_location - self.global_transform.origin).normalized() * moveSpeed
 		self.velocity = target_velocity
@@ -56,6 +63,8 @@ func _move(target):
 func _attack(target):
 	if(self.position.distance_to(target.position) > attackRange):
 		_move(target)
+		print_debug("Moving!")
+		print_debug(target)
 		pass
 	else:
 		if(attack_cooldown > attackSpeed):
@@ -64,12 +73,16 @@ func _attack(target):
 				if(damage < 0):
 					damage = 0
 				target.unitCurrentHealth = target.unitCurrentHealth - (damage)
+				print_debug("I "+ unitName +" am attacking and did "+ str(damage))
 			else:
 				target.unitCurrentHealth = target.unitCurrentHealth - unitDamage
+		else:
+			attack_cooldown = attack_cooldown + 1
 		pass
 	pass
 
 func _death():
 	if(unitCurrentHealth <= 0):
+		print_debug("Fuck ive died! " + unitName)
 		self.free()
 	pass
