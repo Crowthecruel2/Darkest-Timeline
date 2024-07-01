@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt2plilfc817v"]
+
+[ext_resource type="Script" path="res://Generic Code/Army_Spawner.gd" id="1_ewsby"]
+
+[node name="Spawner" type="Node3D" groups=["spawner"]]
+script = ExtResource("1_ewsby")

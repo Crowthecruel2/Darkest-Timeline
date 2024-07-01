@@ -10,20 +10,15 @@ extends CharacterBody3D
 @export var unitArmor:int
 @export var unitMagicArmor:int
 @export var unitTypes:Array = ["Light","Biological"]
-@export var moveType:int
-@export var moveSpeed:int
 @export var attackRange:int
 @export var attackSpeed:float
 @export var unitDamage:int
 @export var bonusDamageType:String
 @export var bonusDamage:int
-@export var NavAgent:NavigationAgent3D
 var kills = 0
 var regen_timer = 0
 var target
-var kill_timer = 0
 var attack_cooldown:float
-var retreating:int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,43 +61,15 @@ func _findTarget():
 			else:
 				closestEnemy = enemies[x]
 		var random_num = randi_range(1,4)
-		if(random_num == 3):
-			closestEnemy = enemies.pick_random()
-	if(self.position.distance_to(closestEnemy.position)< attackRange/2):
-		retreating = -0.5
-	else:
-		retreating = 1
 	target = closestEnemy
-
-func _move(target):
-	if(moveType == 0):
-		NavAgent.target_position = target.position
-		var target_location = NavAgent.get_next_path_position()
-		var target_velocity = (target_location - global_transform.origin).normalized() * moveSpeed * retreating
-		self.velocity = target_velocity
-		move_and_slide()
-
-	if(moveType == 1):
-		pass
-	pass
-
-func lookat():
-	if(target != null):
-		var target_vector = global_position.direction_to(target.position)
-		var target_basis = Basis.looking_at(target_vector)
-		basis = basis.slerp(target_basis, 0.5)
 
 func _attack(delta):
 	if(target != null):
-		kill_timer = kill_timer + 1*delta
-		if(kill_timer > 10):
-			_findTarget()
-		if(self.position.distance_to(target.position) > attackRange || self.position.distance_to(target.position) < attackRange/2):
-			_move(target)
+		
+		if(self.position.distance_to(target.position) < attackRange):
 			
-			pass
-		else:
 			if(attack_cooldown > attackSpeed):
+				print_debug("FIRING MEH LAZER!@")
 				if(target.unitTypes.has(bonusDamageType)):
 					var damage:int = unitDamage + bonusDamage - target.unitArmor
 					if(damage < 0):
@@ -116,11 +83,12 @@ func _attack(delta):
 					
 				if(target.unitCurrentHealth < 0):
 					kills = kills + 1
-					kill_timer = 0
 				attack_cooldown = 0
 			else:
 				attack_cooldown = attack_cooldown + 1*delta
 			pass
+		else:
+			_findTarget()
 	if(target == null):
 		self.add_to_group(unitOwner,false)
 		_findTarget()

@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://beloch8mrp2jv"]
+
+[ext_resource type="Script" path="res://Generic Code/Basic_Structure.gd" id="1_cj6w7"]
+[ext_resource type="Material" uid="uid://da3b7aotc18l3" path="res://Materials/Home_Building/Home_Building_Main.tres" id="2_br2uh"]
+[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Home_Building/Home_Building_Legs.tres" id="3_j505w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5ndc"]
+size = Vector3(1.29889, 0.999405, 1.29974)
+
+[node name="Union Home Building" type="CharacterBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+script = ExtResource("1_cj6w7")
+unitName = "Union Home Building"
+unitMaxHealth = 10000
+unitCurrentHealth = 10000
+unitMaxEnergy = 100
+unitCurrentEnergy = 100
+unitHealthRegeneration = 10
+unitEnergyRegeneration = 10
+unitArmor = 3
+unitTypes = ["Heavy", "Mechanical", "Structure"]
+attackRange = 20
+attackSpeed = 0.5
+unitDamage = 50
+bonusDamageType = "LIght"
+bonusDamage = 10
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424693, 0.5, 0)
+material_override = ExtResource("2_br2uh")
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075307, 0.4, 0.5)
+material_override = ExtResource("3_j505w")
+use_collision = true
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.924693, 0.4, 0.5)
+material_override = ExtResource("3_j505w")
+use_collision = true
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075307, 0.4, -0.5)
+material_override = ExtResource("3_j505w")
+use_collision = true
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.924693, 0.4, -0.5)
+material_override = ExtResource("3_j505w")
+use_collision = true
+size = Vector3(0.3, 0.8, 0.3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424601, 0.499443, 0.000396729)
+shape = SubResource("BoxShape3D_x5ndc")

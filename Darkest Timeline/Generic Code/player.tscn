@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cactt4ymfs33c"]
+
+[ext_resource type="Script" path="res://Generic Code/Player_Controller.gd" id="1_63mfv"]
+[ext_resource type="PackedScene" uid="uid://6esekwap82r0" path="res://UI/HUD.tscn" id="2_ln3op"]
+
+[node name="Player" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_63mfv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="Hud" parent="Camera3D" instance=ExtResource("2_ln3op")]

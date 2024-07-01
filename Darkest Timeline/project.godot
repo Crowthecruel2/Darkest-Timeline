@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Darkest Timeline"
-run/main_scene="res://World.tscn"
+run/main_scene="res://Army/Empty/World.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+
+[autoload]
+
+Global="*res://Generic Code/Global.gd"
 
 [dotnet]
 

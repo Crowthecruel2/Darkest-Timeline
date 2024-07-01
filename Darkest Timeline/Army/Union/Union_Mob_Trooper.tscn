@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cftvc5drs7l5t"]
 
-[ext_resource type="Script" path="res://Generic Code/Union_Mob_Trooper_AI.gd" id="1_4rfvn"]
+[ext_resource type="Script" path="res://Generic Code/Union_Code/Union_Mob_Trooper_AI.gd" id="1_e8nrf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flxn5"]
 
@@ -10,24 +10,24 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_ke63m"]
 
-[node name="UnionTrooper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent")]
+[node name="Union_Mob_Trooper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_4rfvn")
+script = ExtResource("1_e8nrf")
 unitName = "Union Mob Trooper"
 unitMaxHealth = 10
 unitCurrentHealth = 10
-unitRegeneration = 2
 unitArmor = 1
 unitMagicArmor = 1
-moveSpeed = 1
-attackRange = 1
-attackSpeed = 60.0
+moveSpeed = 3
+attackRange = 2
+attackSpeed = 2.0
 unitDamage = 2
 bonusDamageType = "Light"
-bonusDamage = 1
+bonusDamage = 3
 NavAgent = NodePath("NavigationAgent3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_flxn5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
@@ -44,3 +44,10 @@ mesh = SubResource("SphereMesh_ke63m")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 20.01
+avoidance_enabled = true
+radius = 1.0
+neighbor_distance = 3.0
+max_neighbors = 20
+time_horizon_agents = 2.0
+time_horizon_obstacles = 1.0
