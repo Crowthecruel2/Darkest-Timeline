@@ -2,6 +2,7 @@ extends Node3D
 var grid = []
 var grid_x = 15
 var grid_y = 7
+var metal = 0
 @export var team:String
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,7 @@ func _ready():
 	grid[12][1] = preload("res://Army/Union/Penal Trooper.tscn")
 	grid[13][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
 	grid[14][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[7][3] = preload("res://Army/Union/Union_Main_Battle_Tank.tscn")
 	pass # Replace with function body.
 
 
@@ -34,6 +36,8 @@ func _process(delta):
 	pass
 
 func spawn():
+	var chooseUnit
+	chooseUnit =  Global.UnionUnits.pick_random()
 	for x in grid_x:
 		for y in grid_y:
 			var newUnit = grid[x][y]
@@ -45,3 +49,6 @@ func spawn():
 				get_parent().add_child(newUnit)
 				
 				
+
+func metal_increase(income):
+	metal = metal + income

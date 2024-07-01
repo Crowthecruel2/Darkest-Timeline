@@ -19,6 +19,7 @@ extends CharacterBody3D
 @export var bonusDamage:int
 @export var NavAgent:NavigationAgent3D
 @export var unitCost: int
+@export var unitIncome: int
 var kills = 0
 var regen_timer = 0
 var target

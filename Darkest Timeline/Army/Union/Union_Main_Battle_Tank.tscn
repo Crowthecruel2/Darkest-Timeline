@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://fw0h11g6dr6w"]
+
+[ext_resource type="Script" path="res://Generic Code/Union_Code/Union_Battle_Tank_Ai.gd" id="1_72rx5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eo608"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m7ldy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ke63m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ur1qh"]
+
+[node name="Union_Battle_Tank" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_72rx5")
+unitName = "Union Battle Tank"
+unitMaxHealth = 100
+unitCurrentHealth = 100
+unitHealthRegeneration = 2
+unitArmor = 5
+unitTypes = ["Heavy", "Mechanical"]
+moveSpeed = 2
+attackRange = 15
+attackSpeed = 5.0
+unitDamage = 20
+bonusDamageType = "Medium"
+bonusDamage = 20
+NavAgent = NodePath("NavigationAgent3D")
+unitCost = 100
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.17452, 0, -5.16831e-07, 0, 1.78123, 0, 1.90103e-07, 0, -5.91185, 0, 0.385273, 0)
+shape = SubResource("BoxShape3D_eo608")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 20.01
+avoidance_enabled = true
+radius = 1.0
+neighbor_distance = 3.0
+max_neighbors = 20
+time_horizon_agents = 2.0
+time_horizon_obstacles = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.13987, 0, -5.17106e-07, 0, 0.978362, 0, 1.87074e-07, 0, -5.915, 0, 0, 0)
+mesh = SubResource("BoxMesh_m7ldy")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_ke63m")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D3"]
+transform = Transform3D(0.189536, 0, -1.42109e-14, 0, 0.133333, 0, 0, 0, 1.78145, -8.03836e-08, 0.179198, 1.23692)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../../MeshInstance3D")
