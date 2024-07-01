@@ -1,16 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cftvc5drs7l5t"]
+[gd_scene load_steps=5 format=3 uid="uid://cftvc5drs7l5t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flxn5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xdoko"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_uwar1"]
+[sub_resource type="BoxMesh" id="BoxMesh_ur1qh"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ke63m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3s38j"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ur1qh"]
 
 [node name="UnionTrooper" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -21,18 +17,14 @@ shape = SubResource("CapsuleShape3D_flxn5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_xdoko")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
-shape = SubResource("SphereShape3D_uwar1")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.547312, 0.476157)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../MeshInstance3D")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
 mesh = SubResource("SphereMesh_ke63m")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.547312, 0.476157)
-shape = SubResource("BoxShape3D_3s38j")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D3"]
-mesh = SubResource("BoxMesh_ur1qh")
-skeleton = NodePath("../MeshInstance3D")
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
