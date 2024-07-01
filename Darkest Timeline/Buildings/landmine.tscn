@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwrmqrs3bm8sr"]
+
+[ext_resource type="Script" path="res://Generic Code/Basic_Structure.gd" id="1_xtkhd"]
+[ext_resource type="Material" uid="uid://c3percxjl136" path="res://Materials/Union/Landmine/LandmineBase.tres" id="2_ri715"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_02bms"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2c0ib"]
+height = 0.5
+is_hemisphere = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_5yi0q"]
+radius = 0.125
+height = 0.25
+
+[node name="Landmine" type="CharacterBody3D"]
+script = ExtResource("1_xtkhd")
+unitMaxHealth = 1
+unitCurrentHealth = 1
+unitTypes = ["Light", "Structure"]
+attackRange = 1
+attackSpeed = 1.0
+unitDamage = 50
+bonusDamageType = "Light"
+bonusDamage = 50
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_02bms")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_ri715")
+mesh = SubResource("SphereMesh_2c0ib")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527994, 0)
+mesh = SubResource("SphereMesh_5yi0q")

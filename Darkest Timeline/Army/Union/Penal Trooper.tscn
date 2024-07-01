@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cftvc5drs7l5t"]
+[gd_scene load_steps=6 format=3 uid="uid://cmbrhgwysm5dr"]
 
-[ext_resource type="Script" path="res://Generic Code/Union_Code/Union_Mob_Trooper_AI.gd" id="1_e8nrf"]
+[ext_resource type="Script" path="res://Generic Code/Union_Code/Penal_Trooper_Ai.gd" id="1_vyr4k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flxn5"]
 
@@ -10,20 +10,25 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_ke63m"]
 
-[node name="Union_Mob_Trooper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent")]
+[node name="Penal_Trooper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_e8nrf")
-unitName = "Union Mob Trooper"
-unitMaxHealth = 15
-unitCurrentHealth = 15
-unitArmor = 1
-unitMagicArmor = 1
-moveSpeed = 3
-attackRange = 2
-attackSpeed = 2.0
+script = ExtResource("1_vyr4k")
+explosionDamage = 10
+unitName = "Penal Trooper"
+unitMaxHealth = 25
+unitCurrentHealth = 25
+unitMaxEnergy = 5
+unitCurrentEnergy = 5
+unitHealthRegeneration = 1
+unitEnergyRegeneration = 1
+unitArmor = 3
+unitMagicArmor = 3
+moveSpeed = 2
+attackRange = 1
+attackSpeed = 3.0
 unitDamage = 5
-bonusDamageType = "Light"
-bonusDamage = 2
+bonusDamageType = "Heavy"
+bonusDamage = 10
 NavAgent = NodePath("NavigationAgent3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -41,6 +46,11 @@ skeleton = NodePath("../MeshInstance3D")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
 mesh = SubResource("SphereMesh_ke63m")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.954523, 0, 0, 0, 0.361985, 8.6833e-08, -0.024261, -0.517097)
+mesh = SubResource("BoxMesh_ur1qh")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

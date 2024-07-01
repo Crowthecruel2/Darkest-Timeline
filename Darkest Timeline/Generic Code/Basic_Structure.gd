@@ -37,6 +37,7 @@ func _process(delta):
 			unitCurrentEnergy = unitMaxEnergy
 		regen_timer = 0
 	regen_timer = regen_timer + 1*delta
+	_attack(delta)
 	pass
 
 func _findTarget():

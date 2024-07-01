@@ -11,11 +11,21 @@ func _ready():
 		for y in grid_y:
 			grid[x].append(load("res://Army/Empty/Empty_self_deleter.tscn"))
 	
+	grid[0][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
 	grid[1][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
-	grid[2][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[2][1] = preload("res://Army/Union/Penal Trooper.tscn")
 	grid[3][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
 	grid[4][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
 	grid[5][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[6][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[7][1] = preload("res://Army/Union/Penal Trooper.tscn")
+	grid[8][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[9][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[10][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[11][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[12][1] = preload("res://Army/Union/Penal Trooper.tscn")
+	grid[13][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
+	grid[14][1] = preload("res://Army/Union/Union_Mob_Trooper.tscn")
 	pass # Replace with function body.
 
 

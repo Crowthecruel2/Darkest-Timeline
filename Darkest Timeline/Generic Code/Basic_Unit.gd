@@ -18,6 +18,7 @@ extends CharacterBody3D
 @export var bonusDamageType:String
 @export var bonusDamage:int
 @export var NavAgent:NavigationAgent3D
+@export var unitCost: int
 var kills = 0
 var regen_timer = 0
 var target
@@ -68,17 +69,13 @@ func _findTarget():
 		var random_num = randi_range(1,4)
 		if(random_num == 3):
 			closestEnemy = enemies.pick_random()
-	if(self.position.distance_to(closestEnemy.position)< attackRange/2):
-		retreating = -0.5
-	else:
-		retreating = 1
 	target = closestEnemy
 
 func _move(target):
 	if(moveType == 0):
 		NavAgent.target_position = target.position
 		var target_location = NavAgent.get_next_path_position()
-		var target_velocity = (target_location - global_transform.origin).normalized() * moveSpeed * retreating
+		var target_velocity = (target_location - global_transform.origin).normalized() * moveSpeed
 		self.velocity = target_velocity
 		move_and_slide()
 
@@ -97,7 +94,8 @@ func _attack(delta):
 		kill_timer = kill_timer + 1*delta
 		if(kill_timer > 10):
 			_findTarget()
-		if(self.position.distance_to(target.position) > attackRange || self.position.distance_to(target.position) < attackRange/2):
+			kill_timer = 0
+		if(self.position.distance_to(target.position) > attackRange):
 			_move(target)
 			
 			pass
