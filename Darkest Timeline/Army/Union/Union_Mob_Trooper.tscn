@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cftvc5drs7l5t"]
+[gd_scene load_steps=8 format=3 uid="uid://cftvc5drs7l5t"]
 
 [ext_resource type="Script" path="res://Generic Code/Union_Code/Union_Mob_Trooper_AI.gd" id="1_e8nrf"]
 
@@ -10,7 +10,17 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_ke63m"]
 
-[node name="Union_Mob_Trooper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88ogh"]
+transparency = 1
+albedo_color = Color(0.594994, 0.287859, 0.194015, 1)
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wfg3t"]
+material = SubResource("StandardMaterial3D_88ogh")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[node name="Union_Mob_Trooper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_e8nrf")
 unitName = "Union Mob Trooper"
@@ -25,6 +35,9 @@ unitDamage = 5
 bonusDamageType = "Light"
 bonusDamage = 2
 NavAgent = NodePath("NavigationAgent3D")
+unitCost = 30
+unitIncome = 3
+attackParticle = NodePath("CPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -51,3 +64,18 @@ neighbor_distance = 3.0
 max_neighbors = 20
 time_horizon_agents = 2.0
 time_horizon_obstacles = 1.0
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.495145)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.2
+randomness = 0.2
+lifetime_randomness = 0.2
+mesh = SubResource("PlaneMesh_wfg3t")
+direction = Vector3(0, 0, -1)
+spread = 10.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0

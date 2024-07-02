@@ -1,6 +1,7 @@
 extends "res://Generic Code/Basic_Unit.gd"
 
 @export var explosionDamage:int
+@export var explosionParticle:CPUParticles3D
 var Veterancy = 0
 var Spawn_Time = 0
 var landmines = false
@@ -36,6 +37,7 @@ func _process(delta):
 
 func _explode():
 	if(unitCurrentHealth < 0):
+		
 		var everyone = get_tree().get_nodes_in_group("team1")
 		everyone.append_array(get_tree().get_nodes_in_group("team2"))
 		for x in everyone.size():
@@ -47,13 +49,27 @@ func _explode():
 				if(everyone[x].unitCurrentHealth < 0):
 					kills = kills +1
 		print_debug("Kaboom! He blows killing "+ str(kills))
+		xplode_death()
+		
+		
+
+func xplode_death():
+	explosionParticle.emitting = true
+	if(explosionParticle.finished):
+		self.get_child(0).visible = false
+		moveSpeed = 0
+		explosionDamage = 0
+		unitDamage = 0
+		bonusDamage = 0
+		await get_tree().create_timer(4).timeout
+		
 		self.queue_free()
 
 func _deploy_landmine(landmines):
 	if(unitCurrentEnergy == unitMaxEnergy && landmines == true):
 		unitCurrentEnergy = 0
 		var landmine_spawn = preload("res://Buildings/landmine.tscn")
-		landmine_spawn.instantiate()
-		add_child(landmine_spawn)
-		landmine_spawn.position = position
+		var new_unit = landmine_spawn.instantiate()
+		self.add_child(new_unit)
+		new_unit.position = position
 		

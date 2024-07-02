@@ -20,6 +20,7 @@ extends CharacterBody3D
 @export var NavAgent:NavigationAgent3D
 @export var unitCost: int
 @export var unitIncome: int
+@export var attackParticle:CPUParticles3D
 var kills = 0
 var regen_timer = 0
 var target
@@ -67,9 +68,6 @@ func _findTarget():
 					closestEnemy = enemies[x]
 			else:
 				closestEnemy = enemies[x]
-		var random_num = randi_range(1,4)
-		if(random_num == 3):
-			closestEnemy = enemies.pick_random()
 	target = closestEnemy
 
 func _move(target):
@@ -93,7 +91,7 @@ func lookat():
 func _attack(delta):
 	if(target != null):
 		kill_timer = kill_timer + 1*delta
-		if(kill_timer > 10):
+		if(kill_timer > 5):
 			_findTarget()
 			kill_timer = 0
 		if(self.position.distance_to(target.position) > attackRange):
@@ -117,6 +115,7 @@ func _attack(delta):
 					kills = kills + 1
 					kill_timer = 0
 				attack_cooldown = 0
+				attackParticle.emitting = true
 			else:
 				attack_cooldown = attack_cooldown + 1*delta
 			pass
