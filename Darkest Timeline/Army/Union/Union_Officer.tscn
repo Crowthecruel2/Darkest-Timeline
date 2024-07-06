@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8x6uq6lyn7qr"]
+
+[ext_resource type="Script" path="res://Generic Code/Union_Code/Union_Officer_AI.gd" id="1_45px2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flxn5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xdoko"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ur1qh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ke63m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88ogh"]
+transparency = 1
+albedo_color = Color(0.594994, 0.287859, 0.194015, 1)
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wfg3t"]
+material = SubResource("StandardMaterial3D_88ogh")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[node name="Union_Officer" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_45px2")
+healing_range = 3
+unitName = "Union Officer"
+unitMaxHealth = 15
+unitCurrentHealth = 15
+unitMaxEnergy = 8
+unitHealthRegeneration = 1
+unitEnergyRegeneration = 1
+unitArmor = 1
+unitMagicArmor = 10
+moveSpeed = 3
+attackRange = 5
+attackSpeed = 3.0
+unitDamage = 3
+bonusDamageType = "Light"
+bonusDamage = 2
+NavAgent = NodePath("NavigationAgent3D")
+unitCost = 200
+unitIncome = 10
+attackParticle = NodePath("CPUParticles3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_flxn5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_xdoko")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.547312, 0.476157)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_ke63m")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.986499, 0, 0, 0, 0.588342, 0, -7.10543e-15, 0, 0.980085, 3.57978e-08, 0.828405, 0.0666775)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 20.01
+avoidance_enabled = true
+radius = 1.0
+neighbor_distance = 3.0
+max_neighbors = 20
+time_horizon_agents = 2.0
+time_horizon_obstacles = 1.0
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.495145)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.2
+randomness = 0.2
+lifetime_randomness = 0.2
+mesh = SubResource("PlaneMesh_wfg3t")
+direction = Vector3(0, 0, -1)
+spread = 10.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0

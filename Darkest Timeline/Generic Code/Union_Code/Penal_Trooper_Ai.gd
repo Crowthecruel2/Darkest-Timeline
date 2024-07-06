@@ -16,20 +16,11 @@ func _ready():
 
 func _process(delta):
 	if(Global.total_time >= Spawn_Time+30 && Veterancy == 0 && kills >= 1):
-		Veterancy = Veterancy + 1
-		unitName = "Union Penal RocketTrooper"
-		attackRange = 15
-		unitDamage = 10
-		unitHealthRegeneration = 2
-		unitMaxHealth = 40
+		veterancy_up()
 	if(Global.total_time >= Spawn_Time+120 && Veterancy == 1 && kills >= 5):
-		Veterancy = Veterancy + 1
-		unitName = "Union Penal AT Specialist"
-		attackRange = 13
-		unitDamage = 10
-		unitHealthRegeneration = 2
-		unitMaxHealth = 50
-		landmines = true
+		veterancy_up()
+	if(Global.total_time >= Spawn_Time+300 && Veterancy == 2 && kills >= 5):
+		veterancy_up()
 	lookat()
 	_attack(delta)
 	_deploy_landmine(landmines)
@@ -42,13 +33,12 @@ func _explode():
 		everyone.append_array(get_tree().get_nodes_in_group("team2"))
 		for x in everyone.size():
 			if(self.position.distance_to(everyone[x].position) < 5):
-				var damage = (explosionDamage + everyone[x].unitArmor)
+				var damage = (explosionDamage - (everyone[x].unitArmor + everyone[x].unitMagicArmor))
 				if(damage < 0):
 					damage = 0
 				everyone[x].unitCurrentHealth = everyone[x].unitCurrentHealth - damage
 				if(everyone[x].unitCurrentHealth < 0):
 					kills = kills +1
-		print_debug("Kaboom! He blows killing "+ str(kills))
 		xplode_death()
 		
 		
@@ -61,6 +51,7 @@ func xplode_death():
 		explosionDamage = 0
 		unitDamage = 0
 		bonusDamage = 0
+		remove_from_group(unitOwner)
 		await get_tree().create_timer(4).timeout
 		
 		self.queue_free()
@@ -71,5 +62,23 @@ func _deploy_landmine(landmines):
 		var landmine_spawn = preload("res://Buildings/landmine.tscn")
 		var new_unit = landmine_spawn.instantiate()
 		self.add_child(new_unit)
+		new_unit.unitOwner = unitOwner
 		new_unit.position = position
 		
+
+func veterancy_up():
+	Veterancy = Veterancy + 1
+	if(Veterancy == 1):
+		unitName = "Union Penal RocketTrooper"
+		attackRange = 15
+		unitDamage = 10
+		unitHealthRegeneration = 3
+		unitMaxHealth = 40
+	if(Veterancy == 2):
+		unitName = "Union Penal AT Specialist"
+		attackRange = 13
+		unitDamage = 10
+		unitHealthRegeneration = 5
+		unitMaxHealth = 50
+	if(Veterancy == 3):
+		pass

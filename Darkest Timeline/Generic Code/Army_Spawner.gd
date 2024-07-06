@@ -33,9 +33,7 @@ func spawn():
 					newUnit.unitOwner = team
 					newUnit.position = self.global_transform.origin + Vector3(x*5,2,y*5)
 					get_parent().add_child(newUnit)
-	
-				
-				
+
 
 func add_random_unit_AI():
 	var chooseUnit = Global.UnionUnits.pick_random()

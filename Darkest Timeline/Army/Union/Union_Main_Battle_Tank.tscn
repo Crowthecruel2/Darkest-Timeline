@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Generic Code/Union_Code/Union_Battle_Tank_Ai.gd" id="1_72rx5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_eo608"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wesqc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m7ldy"]
 
@@ -36,20 +36,20 @@ unitDamage = 20
 bonusDamageType = "Medium"
 bonusDamage = 20
 NavAgent = NodePath("NavigationAgent3D")
-unitCost = 200
+unitCost = 400
 unitIncome = 20
 attackParticle = NodePath("CollisionShape3D/MeshInstance3D3/MeshInstance3D2/CPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.2, 0, -1.72377e-06, 0, 3.439, 0, 6.34182e-07, 0, -11.416, 0, 0.385273, 0)
-shape = SubResource("BoxShape3D_eo608")
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.385273, 0)
+shape = SubResource("CapsuleShape3D_wesqc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(0.984066, 0, 0, 0, 0.549262, 0, 0, 0, 1.00053, 0, -0.216296, 0)
+transform = Transform3D(4.13308, 0, 1.13687e-13, 0, 1.88891, 0, 0, 0, 11.4221, 0, -0.743842, 0)
 mesh = SubResource("BoxMesh_m7ldy")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(0.689808, 0, 0, 0, 0.842114, 0, 1.77636e-15, 0, 0.253728, 0, 0.0644085, 0)
+transform = Transform3D(2.89719, 0, 0, 0, 2.89603, 0, 0, 0, 2.89656, 0, 0.221501, 0)
 mesh = SubResource("SphereMesh_ke63m")
 skeleton = NodePath("../MeshInstance3D")
 

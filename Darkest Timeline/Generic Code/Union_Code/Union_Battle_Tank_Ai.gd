@@ -12,14 +12,25 @@ func _ready():
 
 func _process(delta):
 	if(Global.total_time >= Spawn_Time+30 && Veterancy == 0 && kills >= 1):
-		Veterancy = Veterancy + 1
-		
+		veterancy_up()
 	if(Global.total_time >= Spawn_Time+120 && Veterancy == 1 && kills >= 5):
-		Veterancy = Veterancy + 1
-		
-	if(Global.total_time >= Spawn_Time+300 && Veterancy == 2 && kills >= 10):
-		Veterancy = Veterancy + 1
-		
+		veterancy_up()
+	if(Global.total_time >= Spawn_Time+300 && Veterancy == 2 && kills >= 5):
+		veterancy_up()
+	
 	lookat()
 	_attack(delta)
 	_death()
+
+func veterancy_up():
+	Veterancy = Veterancy + 1
+	if(Veterancy == 1):
+		unitName = "Restored Union Battle Tank"
+		unitMaxHealth = 150
+		moveSpeed = 3
+	if(Veterancy == 2):
+		unitName = "Prestine Union Battle Tank"
+		attackSpeed = 2
+	if(Veterancy == 3):
+		unitName = "Improved Union Battke Tank"
+		attackSpeed = 1

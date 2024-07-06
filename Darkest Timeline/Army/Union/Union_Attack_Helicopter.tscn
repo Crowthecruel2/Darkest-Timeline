@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://crdmd1y4ob113"]
+
+[ext_resource type="Script" path="res://Generic Code/Union_Code/Union_attack_helicopter_AI.gd" id="1_u6qwr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flxn5"]
+height = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_08s4i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ur1qh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d82k1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88ogh"]
+transparency = 1
+albedo_color = Color(0.594994, 0.287859, 0.194015, 1)
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wfg3t"]
+material = SubResource("StandardMaterial3D_88ogh")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[node name="Union Attack Helicopter" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_u6qwr")
+unitName = "Union Attack Helicopter"
+unitMaxHealth = 50
+unitCurrentHealth = 50
+unitMaxEnergy = 5
+unitCurrentEnergy = 5
+unitHealthRegeneration = 1
+unitEnergyRegeneration = 1
+unitArmor = 1
+unitMagicArmor = 2
+unitTypes = ["Light", "Flying", "Mechanical"]
+moveType = 1
+moveSpeed = 4
+attackRange = 10
+attackSpeed = 1.0
+unitDamage = 5
+bonusDamageType = "Light"
+bonusDamage = 5
+NavAgent = NodePath("NavigationAgent3D")
+unitCost = 200
+unitIncome = 10
+CanHitAir = true
+attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 10, 0)
+shape = SubResource("CapsuleShape3D_flxn5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1.12479, 0, 0, 0, 1, 0, -7.10543e-15, 0, 3.93916, 5.61984e-08, 0, -0.642835)
+mesh = SubResource("BoxMesh_08s4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.192819, 0, 0, 0, 0.404335, 0, 0, 0, 0.2, 6.29779e-08, 1.10022, -0.244226)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, -7.10543e-15, 0, 2.14065, 7.5983e-08, 0.5, -0.869145)
+mesh = SubResource("BoxMesh_d82k1")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.973384, -2.40508e-08, 9.16442e-09, 3.42191e-08, 0.62639, -0.49937, 7.18335e-09, 0.275109, 1.137, -5.12753e-08, 0.400909, 0.586521)
+mesh = SubResource("BoxMesh_08s4i")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(6.97273, 0, -1.77636e-15, 0, 0.191047, 0, 0, 0, 0.205036, 6.29779e-08, 1.10022, -0.244226)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.652378, 6.98408e-09, 3.52667e-07, 4.53518e-16, 0.721543, -0.446645, -5.70327e-08, -0.0798886, -4.03404, 2.1943e-07, 0.397303, -3.15282)
+mesh = SubResource("BoxMesh_08s4i")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.652378, -2.46726e-09, 3.54553e-07, -1.60214e-16, 0.725404, 0.157786, -5.70327e-08, 0.0282222, -4.05562, 2.1943e-07, -0.136294, -3.15282)
+mesh = SubResource("BoxMesh_08s4i")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.192819, -5.95844e-09, 8.18056e-09, 6.10103e-09, 0.175546, -0.499554, 1.14282e-09, 0.0681566, 1.28666, -7.69866e-08, -0.71071, 1.35678)
+mesh = SubResource("BoxMesh_ur1qh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="CollisionShape3D"]
+transform = Transform3D(-1, -3.89532e-08, 7.82649e-08, 0, 0.895246, 0.445573, -8.74228e-08, 0.445573, -0.895246, -0.00704615, -1.00217, 1.94553)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.2
+randomness = 0.2
+lifetime_randomness = 0.2
+mesh = SubResource("PlaneMesh_wfg3t")
+direction = Vector3(0, 0, -1)
+spread = 10.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 20.01
+avoidance_enabled = true
+radius = 1.0
+neighbor_distance = 3.0
+max_neighbors = 20
+time_horizon_agents = 2.0
+time_horizon_obstacles = 1.0
+use_3d_avoidance = true

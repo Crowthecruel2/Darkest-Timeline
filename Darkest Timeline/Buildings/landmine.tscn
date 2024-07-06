@@ -36,3 +36,6 @@ mesh = SubResource("SphereMesh_2c0ib")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527994, 0)
 mesh = SubResource("SphereMesh_5yi0q")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 1.0
