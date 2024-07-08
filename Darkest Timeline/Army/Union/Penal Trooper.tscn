@@ -36,7 +36,7 @@ orientation = 2
 [node name="Penal_Trooper" type="CharacterBody3D" node_paths=PackedStringArray("explosionParticle", "NavAgent", "attackParticle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_vyr4k")
-explosionDamage = 10
+explosionDamage = 20
 explosionParticle = NodePath("Explosion_particle")
 unitName = "Penal Trooper"
 unitMaxHealth = 25

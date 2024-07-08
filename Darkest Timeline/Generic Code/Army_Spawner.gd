@@ -3,11 +3,13 @@ var grid = []
 var grid_x = 15
 var grid_y = 5
 var metal = 100
+var spawn_time
 var random_unit_counter = 0
 @export var team:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spawn_time = Global.total_time
 	for x in grid_x:
 		grid.append([])
 		for y in grid_y:
@@ -18,7 +20,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	
+	if(Global.total_time > spawn_time+30):
+		spawn()
+		spawn_time = Global.total_time
 
 func spawn():
 	add_random_unit_AI()
@@ -33,7 +38,17 @@ func spawn():
 					newUnit.unitOwner = team
 					newUnit.position = self.global_transform.origin + Vector3(x*5,2,y*5)
 					get_parent().add_child(newUnit)
+	income()
 
+func income():
+	var income = 0
+	for x in 15:
+		for y in 5:
+			var unit_count = (load(grid[x][y])).instantiate()
+			income = income + unit_count.unitIncome
+			unit_count.queue_free()
+	metal = metal + income
+	print_debug(metal)
 
 func add_random_unit_AI():
 	var chooseUnit = Global.UnionUnits.pick_random()

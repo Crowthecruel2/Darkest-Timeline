@@ -5,6 +5,7 @@ extends "res://Generic Code/Basic_Unit.gd"
 var Veterancy = 0
 var Spawn_Time = 0
 var landmines = false
+var exploding = false
 func _ready():
 	Spawn_Time = Global.total_time
 	if(unitOwner == "team1"):
@@ -15,15 +16,18 @@ func _ready():
 		$CollisionShape3D/MeshInstance3D4.material_override = Global.color_arr[1]
 
 func _process(delta):
-	if(Global.total_time >= Spawn_Time+30 && Veterancy == 0 && kills >= 1):
-		veterancy_up()
-	if(Global.total_time >= Spawn_Time+120 && Veterancy == 1 && kills >= 5):
-		veterancy_up()
-	if(Global.total_time >= Spawn_Time+300 && Veterancy == 2 && kills >= 5):
-		veterancy_up()
-	lookat()
-	_attack(delta)
-	_deploy_landmine(landmines)
+	
+	
+	if(!exploding):
+		if(Global.total_time >= Spawn_Time+30 && Veterancy == 0 && kills >= 1):
+			veterancy_up()
+		if(Global.total_time >= Spawn_Time+120 && Veterancy == 1 && kills >= 5):
+			veterancy_up()
+		if(Global.total_time >= Spawn_Time+300 && Veterancy == 2 && kills >= 5):
+			veterancy_up()
+		lookat()
+		_attack(delta)
+		_deploy_landmine(landmines)
 	_explode()
 
 func _explode():
@@ -39,6 +43,7 @@ func _explode():
 				everyone[x].unitCurrentHealth = everyone[x].unitCurrentHealth - damage
 				if(everyone[x].unitCurrentHealth < 0):
 					kills = kills +1
+		exploding = true
 		xplode_death()
 		
 		

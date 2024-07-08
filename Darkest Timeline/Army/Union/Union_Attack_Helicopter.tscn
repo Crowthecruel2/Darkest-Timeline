@@ -44,8 +44,8 @@ bonusDamage = 5
 NavAgent = NodePath("NavigationAgent3D")
 unitCost = 200
 unitIncome = 10
-CanHitAir = true
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
+canHitAir = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 10, 0)
@@ -113,3 +113,7 @@ max_neighbors = 20
 time_horizon_agents = 2.0
 time_horizon_obstacles = 1.0
 use_3d_avoidance = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_flxn5")

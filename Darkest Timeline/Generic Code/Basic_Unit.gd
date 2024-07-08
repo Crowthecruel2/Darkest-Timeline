@@ -21,6 +21,8 @@ extends CharacterBody3D
 @export var unitCost: int
 @export var unitIncome: int
 @export var attackParticle:CPUParticles3D
+@export var canHitAir:bool = false
+var enemies = []
 var kills = 0
 var regen_timer = 0
 var target
@@ -50,19 +52,24 @@ func _process(delta):
 func _findTarget():
 	var closestEnemy
 	if(self.get_tree().get_nodes_in_group("team1").has(self)):
-		var enemies = self.get_tree().get_nodes_in_group("team2")
-		for x in enemies.size():
+		enemies = self.get_tree().get_nodes_in_group("team2")
+	if(self.get_tree().get_nodes_in_group("team2").has(self)):
+		enemies = self.get_tree().get_nodes_in_group("team1")
+	
+	for x in enemies.size():
+		if(canHitAir == true && enemies[x].moveType == 1):
 			if(closestEnemy != null):
 				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
 					closestEnemy = enemies[x]
 			else:
 				closestEnemy = enemies[x]
-		var random_num = randi_range(1,4)
-		if(random_num == 3):
-			closestEnemy = enemies.pick_random()
-	if(self.get_tree().get_nodes_in_group("team2").has(self)):
-		var enemies = self.get_tree().get_nodes_in_group("team1")
-		for x in enemies.size():
+		if(canHitAir == true && enemies[x].moveType == 0):
+			if(closestEnemy != null):
+				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
+					closestEnemy = enemies[x]
+			else:
+				closestEnemy = enemies[x]
+		if(canHitAir == false && enemies[x].moveType == 0):
 			if(closestEnemy != null):
 				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
 					closestEnemy = enemies[x]
@@ -71,21 +78,16 @@ func _findTarget():
 	target = closestEnemy
 
 func _move(target):
-	if(moveType == 0):
-		NavAgent.target_position = target.position
-		var target_location = NavAgent.get_next_path_position()
-		var target_velocity = (target_location - global_transform.origin).normalized() * moveSpeed
-		self.velocity = target_velocity
-		move_and_slide()
-
-	if(moveType == 1):
-		pass
-	pass
+	NavAgent.target_position = target.position
+	var target_location = NavAgent.get_next_path_position()
+	var target_velocity = (target_location - global_transform.origin).normalized() * moveSpeed
+	self.velocity = target_velocity
+	move_and_slide()
 
 func lookat():
 	if(target != null):
 		var target_vector = global_position.direction_to(target.position)
-		var target_basis = Basis.looking_at(target_vector)
+		var target_basis = Basis.looking_at(Vector3(target_vector.x,0,target_vector.z))
 		basis = basis.slerp(target_basis, 0.5)
 
 func _attack(delta):
@@ -94,11 +96,11 @@ func _attack(delta):
 		if(kill_timer > 5):
 			_findTarget()
 			kill_timer = 0
-		if(self.position.distance_to(target.position) > attackRange):
+		if(self.position.distance_to(target.position) > attackRange && target != null):
 			_move(target)
 			
 			pass
-		else:
+		if(self.position.distance_to(target.position) < attackRange):
 			if(attack_cooldown > attackSpeed):
 				if(target.unitTypes.has(bonusDamageType)):
 					var damage:int = unitDamage + bonusDamage - target.unitArmor

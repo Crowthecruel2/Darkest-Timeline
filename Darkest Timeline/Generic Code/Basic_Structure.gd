@@ -15,6 +15,7 @@ extends CharacterBody3D
 @export var unitDamage:int
 @export var bonusDamageType:String
 @export var bonusDamage:int
+var moveType = 0
 var kills = 0
 var regen_timer = 0
 var target
