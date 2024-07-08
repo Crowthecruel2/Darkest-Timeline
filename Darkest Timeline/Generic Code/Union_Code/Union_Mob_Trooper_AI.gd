@@ -1,5 +1,4 @@
-extends "res://Generic Code/Basic_Unit.gd"
-
+extends "res://Generic Code/Neutral/Basic_Unit.gd"
 var Veterancy = 0
 var Spawn_Time = 0
 
@@ -32,6 +31,7 @@ func veterancy_up():
 		unitDamage = 6
 		unitHealthRegeneration = 2
 		unitMaxHealth = 20
+		canHitAir = true
 	if(Veterancy == 2):
 		unitName = "Union Mob MachineGunner"
 		attackRange = 12

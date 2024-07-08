@@ -1,4 +1,4 @@
-extends "res://Generic Code/Basic_Unit.gd"
+extends "res://Generic Code/Neutral/Basic_Unit.gd"
 
 
 # Called when the node enters the scene tree for the first time.

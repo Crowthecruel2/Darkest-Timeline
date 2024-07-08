@@ -1,4 +1,4 @@
-extends "res://Generic Code/Basic_Unit.gd"
+extends "res://Generic Code/Neutral/Basic_Unit.gd"
 
 var Veterancy = 0
 var Spawn_Time = 0

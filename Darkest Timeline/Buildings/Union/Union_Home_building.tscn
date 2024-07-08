@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://beloch8mrp2jv"]
 
-[ext_resource type="Script" path="res://Generic Code/Basic_Structure.gd" id="1_cj6w7"]
+[ext_resource type="Script" path="res://Generic Code/Neutral/Basic_Structure.gd" id="1_cj6w7"]
 [ext_resource type="Material" uid="uid://da3b7aotc18l3" path="res://Materials/Union/Home_Building/Home_Building_Main.tres" id="2_yhbrw"]
 [ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="3_r7eg0"]
 

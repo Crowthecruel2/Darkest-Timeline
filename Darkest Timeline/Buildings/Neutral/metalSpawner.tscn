@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ot76l1v3eh8m"]
+
+[ext_resource type="Script" path="res://Generic Code/Neutral/metalSpawner.gd" id="1_mk7ty"]
+
+[node name="MetalSpawner" type="Node3D"]
+script = ExtResource("1_mk7ty")

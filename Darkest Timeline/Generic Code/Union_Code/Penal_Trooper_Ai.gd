@@ -1,4 +1,4 @@
-extends "res://Generic Code/Basic_Unit.gd"
+extends "res://Generic Code/Neutral/Basic_Unit.gd"
 
 @export var explosionDamage:int
 @export var explosionParticle:CPUParticles3D
@@ -64,7 +64,7 @@ func xplode_death():
 func _deploy_landmine(landmines):
 	if(unitCurrentEnergy == unitMaxEnergy && landmines == true):
 		unitCurrentEnergy = 0
-		var landmine_spawn = preload("res://Buildings/landmine.tscn")
+		var landmine_spawn = preload("res://Buildings/Union/landmine.tscn")
 		var new_unit = landmine_spawn.instantiate()
 		self.add_child(new_unit)
 		new_unit.unitOwner = unitOwner

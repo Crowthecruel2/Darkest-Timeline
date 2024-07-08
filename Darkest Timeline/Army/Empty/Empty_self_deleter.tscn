@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmcrrkw6r0m8l"]
 
-[ext_resource type="Script" path="res://Generic Code/Empty_self_deleter.gd" id="1_gdy4w"]
+[ext_resource type="Script" path="res://Generic Code/Neutral/Empty_self_deleter.gd" id="1_gdy4w"]
 
 [node name="EmptySelfDeleter" type="CharacterBody3D"]
 script = ExtResource("1_gdy4w")

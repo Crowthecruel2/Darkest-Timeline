@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cactt4ymfs33c"]
 
-[ext_resource type="Script" path="res://Generic Code/Player_Controller.gd" id="1_63mfv"]
+[ext_resource type="Script" path="res://Generic Code/Neutral/Player_Controller.gd" id="1_63mfv"]
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 motion_mode = 1

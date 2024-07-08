@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt5blhplkqk81"]
+
+[ext_resource type="Script" path="res://Generic Code/Neutral/metal.gd" id="1_nfx3e"]
+[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_l37ld"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ghcnn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_78tpr"]
+material = ExtResource("2_l37ld")
+
+[node name="Metal" type="Node3D" groups=["metal"]]
+script = ExtResource("1_nfx3e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ghcnn")
+
+[node name="strand1" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_78tpr")
+
+[node name="strand2" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_78tpr")
+
+[node name="strand3" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_78tpr")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 2.0
