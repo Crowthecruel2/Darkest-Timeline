@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://kmwnh0f1xqrv"]
+
+[ext_resource type="Script" path="res://Generic Code/UnitedNetworks/Diplomat_Ai.gd" id="1_nx0uv"]
+[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_42pxy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ebsi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iaoeg"]
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wljkg"]
+size = Vector3(0.9, 0.25, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0yk0n"]
+size = Vector3(0.5, 0.5, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfbv7"]
+transparency = 1
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jkgh7"]
+material = SubResource("StandardMaterial3D_cfbv7")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_b12xt"]
+_data = [Vector2(0.0617978, 1), 0.0, 0.0, 0, 0, Vector2(0.747191, 0.197802), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_k02j0"]
+
+[sub_resource type="Gradient" id="Gradient_j7pl8"]
+offsets = PackedFloat32Array(0.26, 0.973333, 0.993333, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.94, 0.94, 0.94, 1, 0.965352, 0.965352, 0.965352, 1, 1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_qllec"]
+min_value = -1.0
+_data = [Vector2(0.00561798, 0.450549), 0.0, 0.0, 0, 0, Vector2(0.488764, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Diplomat" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+script = ExtResource("1_nx0uv")
+unitName = "UN_Peacekeeper"
+unitMaxHealth = 50
+unitCurrentHealth = 50
+unitMaxEnergy = 10
+unitEnergyRegeneration = 1
+unitArmor = 2
+unitMagicArmor = 2
+unitTypes = ["Light", "Mechanical"]
+moveSpeed = 2
+attackRange = 15
+attackSpeed = 5.0
+unitDamage = 20
+bonusDamageType = "Mechanical"
+bonusDamage = 10
+NavAgent = NodePath("NavigationAgent3D")
+unitCost = 80
+unitIncome = 8
+attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3ebsi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_iaoeg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.486635, 0.255992, 0.180263)
+material_override = ExtResource("2_42pxy")
+mesh = SubResource("BoxMesh_wljkg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39841e-08, 0.287063, 1.40546)
+material_override = ExtResource("2_42pxy")
+mesh = SubResource("BoxMesh_0yk0n")
+skeleton = NodePath("../..")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26897e-07, 0.218753, 2.8956)
+emitting = false
+amount = 200
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("PlaneMesh_jkgh7")
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 0, 1)
+spread = 0.5
+gravity = Vector3(0, 4, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = 2.0
+angular_velocity_max = 2.0
+radial_accel_min = 2.0
+radial_accel_max = 2.0
+scale_amount_curve = SubResource("Curve_b12xt")
+color = Color(0.45098, 0.0431373, 0.819608, 1)
+color_ramp = SubResource("Gradient_k02j0")
+color_initial_ramp = SubResource("Gradient_j7pl8")
+hue_variation_min = -0.22
+hue_variation_max = 0.18
+hue_variation_curve = SubResource("Curve_qllec")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

@@ -4,11 +4,13 @@ var grid_x = 15
 var grid_y = 5
 var metal = 100
 var spawn_time
+var units = Global.Factions.pick_random()
 var random_unit_counter = 0
 @export var team:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	spawn_time = Global.total_time
 	for x in grid_x:
 		grid.append([])
@@ -51,7 +53,7 @@ func income():
 	print_debug(metal)
 
 func add_random_unit_AI():
-	var chooseUnit = Global.UnionUnits.pick_random()
+	var chooseUnit = units.pick_random()
 	var chooseUnitCheck = load(chooseUnit).instantiate()
 	if(metal > chooseUnitCheck.unitCost):
 		var randx = randi_range(0,grid_x-1)

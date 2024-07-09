@@ -8,8 +8,12 @@ var team_incomes = [0,0]
 var total_units = 200
 var spawn_Counter = 0
 var spawned = false
+
 @onready var spawners = get_tree().get_nodes_in_group("spawner")
+var UnitedUnits = ["res://Army/UnitedNetworks/UN_PeaceKeeper.tscn","res://Army/UnitedNetworks/Diplomat.tscn"]
 var UnionUnits = ["res://Army/Union/Penal Trooper.tscn","res://Army/Union/Union_Mob_Trooper.tscn","res://Army/Union/Union_Mob_Trooper.tscn","res://Army/Union/Union_Main_Battle_Tank.tscn","res://Army/Union/Union_Mob_Trooper.tscn","res://Army/Union/Union_Attack_Helicopter.tscn"]
+var Factions = [UnitedUnits,UnionUnits]
+
 
 func _process(delta):
 	total_time = total_time + 1*delta
