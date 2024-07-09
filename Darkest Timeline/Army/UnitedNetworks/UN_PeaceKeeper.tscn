@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://2bf408citjqb"]
+
+[ext_resource type="Script" path="res://Generic Code/UnitedNetworks/UN_PeaceKeeper_AI.gd" id="1_x8r8j"]
+[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_jkrjw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ebsi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iaoeg"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wljkg"]
+size = Vector3(0.9, 0.25, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0yk0n"]
+size = Vector3(0.5, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfbv7"]
+transparency = 1
+albedo_color = Color(0.788235, 0.0392157, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jkgh7"]
+material = SubResource("StandardMaterial3D_cfbv7")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[node name="UnPeaceKeeper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+script = ExtResource("1_x8r8j")
+unitName = "UN_Peacekeeper"
+unitMaxHealth = 30
+unitCurrentHealth = 30
+unitMaxEnergy = 10
+unitEnergyRegeneration = 1
+unitArmor = 4
+unitTypes = ["Light", "Mechanical"]
+moveSpeed = 3
+attackRange = 10
+attackSpeed = 2.0
+unitDamage = 10
+bonusDamageType = "Light"
+bonusDamage = 5
+NavAgent = NodePath("NavigationAgent3D")
+unitCost = 50
+unitIncome = 5
+attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
+canHitAir = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3ebsi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_iaoeg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657906, 0.180263)
+material_override = ExtResource("2_jkrjw")
+mesh = SubResource("BoxMesh_wljkg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.108624, 0.902338)
+material_override = ExtResource("2_jkrjw")
+mesh = SubResource("BoxMesh_0yk0n")
+skeleton = NodePath("../..")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.119158, 1.44407)
+emitting = false
+amount = 200
+one_shot = true
+mesh = SubResource("PlaneMesh_jkgh7")
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
