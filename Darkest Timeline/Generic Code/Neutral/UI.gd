@@ -4,6 +4,7 @@ extends Control
 @onready var unitCon = $Panel/UnitContainer
 @onready var facCon = $Panel/FactionContainer
 @onready var metal_label = $Panel/Label
+@onready var Income_Label = $Panel/Income_Label
 var unit_locked = false
 var spawner
 
@@ -18,6 +19,7 @@ func _ready():
 		var newButton = Button.new()
 		facCon.add_child(newButton)
 		newButton.text = Global.Faction_Names[f]
+		newButton.tooltip_text = Global.Faction_Description[f]
 		newButton.pressed.connect(spawner.set_faction.bind(f))
 	
 	
@@ -30,6 +32,7 @@ func _process(delta):
 	
 	if(spawner != null):
 		metal_label.text = "Metal: " + str(spawner.metal)
+		Income_Label.text = "Income: " + str(spawner.income_metal)
 	pass
 
 func update_unit_array():

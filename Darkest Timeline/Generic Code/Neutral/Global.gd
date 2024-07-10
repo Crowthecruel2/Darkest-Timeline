@@ -14,6 +14,7 @@ var UnitedUnits = ["res://Army/UnitedNetworks/UN_PeaceKeeper.tscn","res://Army/U
 var UnionUnits = ["res://Army/Union/Penal Trooper.tscn","res://Army/Union/Union_Mob_Trooper.tscn","res://Army/Union/Union_Main_Battle_Tank.tscn","res://Army/Union/Union_Officer.tscn","res://Army/Union/Union_Attack_Helicopter.tscn"]
 var Factions = [UnitedUnits,UnionUnits]
 var Faction_Names = ["United Networks","The Union"]
+var Faction_Description = ["Ai overlords","Super Russia"]
 
 
 func _process(delta):

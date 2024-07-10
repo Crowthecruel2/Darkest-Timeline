@@ -8,6 +8,7 @@ var units = Global.Factions.pick_random()
 var random_unit_counter = 0
 var UIs
 var UI
+var income_metal = 0
 @export var team:String
 @export var AiControlled:bool
 
@@ -50,13 +51,13 @@ func spawn():
 	income()
 
 func income():
-	var income = 0
+	income_metal = 0
 	for x in 15:
 		for y in 5:
 			var unit_count = (load(grid[x][y])).instantiate()
-			income = income + unit_count.unitIncome
+			income_metal = income_metal + unit_count.unitIncome
 			unit_count.queue_free()
-	metal = metal + income
+	metal = metal + income_metal
 	print_debug(metal)
 
 func add_spesific_unit(unit_num):
@@ -69,13 +70,8 @@ func add_spesific_unit(unit_num):
 			grid[randx][randy] = chooseUnit
 			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
-			add_random_unit_AI()
-		if(load(grid[randx][randy]) != load("res://Army/Empty/Empty_self_deleter.tscn") && random_unit_counter < 10):
-			random_unit_counter = random_unit_counter + 1
+		if(load(grid[randx][randy]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
 			chooseUnitCheck.queue_free()
-			add_random_unit_AI()
-		else:
-			random_unit_counter = 0
 	else:
 		chooseUnitCheck.queue_free()
 

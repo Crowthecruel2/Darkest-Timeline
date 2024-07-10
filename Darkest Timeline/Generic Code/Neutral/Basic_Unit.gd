@@ -87,7 +87,7 @@ func _move(target):
 func lookat():
 	if(target != null):
 		var target_vector = global_position.direction_to(target.position)
-		var target_basis = Basis.looking_at(Vector3(target_vector.x,0,target_vector.z))
+		var target_basis = Basis.looking_at(Vector3(target_vector))
 		basis = basis.slerp(target_basis, 0.5)
 
 func _attack(delta):
