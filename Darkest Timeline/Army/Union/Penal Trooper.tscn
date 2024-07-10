@@ -46,9 +46,9 @@ unitCurrentEnergy = 5
 unitHealthRegeneration = 1
 unitEnergyRegeneration = 1
 unitArmor = 3
-unitMagicArmor = 3
+unitMagicArmor = 10
 moveSpeed = 2
-attackRange = 1
+attackRange = 2
 attackSpeed = 3.0
 unitDamage = 5
 bonusDamageType = "Heavy"
@@ -57,6 +57,7 @@ NavAgent = NodePath("NavigationAgent3D")
 unitCost = 50
 unitIncome = 5
 attackParticle = NodePath("CPUParticles3D")
+unitDesc = "Suicide trooper that explodes when they die. Bonus damage vs Heavy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

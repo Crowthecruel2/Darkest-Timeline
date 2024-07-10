@@ -22,6 +22,7 @@ extends CharacterBody3D
 @export var unitIncome: int
 @export var attackParticle:CPUParticles3D
 @export var canHitAir:bool = false
+@export var unitDesc:String
 var enemies = []
 var kills = 0
 var regen_timer = 0

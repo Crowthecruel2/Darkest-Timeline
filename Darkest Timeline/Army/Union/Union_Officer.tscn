@@ -42,6 +42,7 @@ NavAgent = NodePath("NavigationAgent3D")
 unitCost = 200
 unitIncome = 10
 attackParticle = NodePath("CPUParticles3D")
+unitDesc = "In charge of the other troops. Promotes them in veterancy making them stronger"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

@@ -44,6 +44,7 @@ func update_unit_array():
 			unitCon.add_child(newButton)
 			var temp_Unit = load(spawner.units[u]).instantiate()
 			newButton.text = temp_Unit.unitName + " " + str(temp_Unit.unitCost)
+			newButton.tooltip_text = "Unit Name: " + str(temp_Unit.unitName) + "\n" + "Unit Cost: " + str(temp_Unit.unitCost) + "\n" + "Unit Income: " + str(temp_Unit.unitIncome) + "\n" + "Unit Types: " + str(temp_Unit.unitTypes)+ "\n" + "Unit Range: " + str(temp_Unit.attackRange)+ "\n" + "Unit Damage: " + str(temp_Unit.unitDamage)+ "\n" + "Unit Description: " + str(temp_Unit.unitDesc)
 			temp_Unit.queue_free()
 			newButton.pressed.connect(spawner.add_spesific_unit.bind(u))
 		unit_locked == true
