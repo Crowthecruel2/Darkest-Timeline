@@ -41,7 +41,7 @@ point_count = 3
 
 [node name="Diplomat" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
 script = ExtResource("1_nx0uv")
-unitName = "UN_Peacekeeper"
+unitName = "Diplomat"
 unitMaxHealth = 50
 unitCurrentHealth = 50
 unitMaxEnergy = 10

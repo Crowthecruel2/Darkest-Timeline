@@ -6,12 +6,17 @@ var metal = 100
 var spawn_time
 var units = Global.Factions.pick_random()
 var random_unit_counter = 0
+var UIs
+var UI
 @export var team:String
 @export var AiControlled:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	UIs = get_tree().get_nodes_in_group("UI")
+	for u in UIs.size():
+		if(UIs[u]).playerTeam == team:
+			UI = UIs[u]
 	spawn_time = Global.total_time
 	for x in grid_x:
 		grid.append([])
@@ -55,9 +60,9 @@ func income():
 	print_debug(metal)
 
 func add_spesific_unit(unit_num):
-	var chooseUnit = units.unit_num
+	var chooseUnit = units[unit_num]
 	var chooseUnitCheck = load(chooseUnit).instantiate()
-	if(metal > chooseUnitCheck.unitCost):
+	if(metal >= chooseUnitCheck.unitCost):
 		var randx = randi_range(0,grid_x-1)
 		var randy = randi_range(0,grid_y-1)
 		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
@@ -76,11 +81,16 @@ func add_spesific_unit(unit_num):
 
 func set_faction(faction):
 	units = Global.Factions[faction]
+	for u in UI.facCon.get_children().size():
+		UI.facCon.get_child(u).disabled = true
+	UI.facCon.visible = false
+	UI.unitCon.visible = true
+	UI.update_unit_array()
 
 func add_random_unit_AI():
 	var chooseUnit = units.pick_random()
 	var chooseUnitCheck = load(chooseUnit).instantiate()
-	if(metal > chooseUnitCheck.unitCost):
+	if(metal >= chooseUnitCheck.unitCost):
 		var randx = randi_range(0,grid_x-1)
 		var randy = randi_range(0,grid_y-1)
 		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
