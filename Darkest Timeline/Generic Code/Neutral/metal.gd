@@ -11,6 +11,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(value <= 0):
-		queue_free()
+	if(value < 0):
+		free()
 	pass

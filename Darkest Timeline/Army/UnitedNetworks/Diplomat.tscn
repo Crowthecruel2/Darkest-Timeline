@@ -56,8 +56,8 @@ unitDamage = 20
 bonusDamageType = "Mechanical"
 bonusDamage = 10
 NavAgent = NodePath("NavigationAgent3D")
-unitCost = 80
-unitIncome = 8
+unitCost = 120
+unitIncome = 12
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

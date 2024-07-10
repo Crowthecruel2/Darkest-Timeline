@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_x5ndc"]
 size = Vector3(1.29889, 0.999405, 1.29974)
 
-[node name="Union Home Building" type="CharacterBody3D"]
+[node name="Union Home Building" type="CharacterBody3D" groups=["base"]]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 script = ExtResource("1_cj6w7")
 unitName = "Union Home Building"

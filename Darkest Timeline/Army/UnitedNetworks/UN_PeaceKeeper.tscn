@@ -40,8 +40,8 @@ unitDamage = 10
 bonusDamageType = "Light"
 bonusDamage = 5
 NavAgent = NodePath("NavigationAgent3D")
-unitCost = 50
-unitIncome = 5
+unitCost = 80
+unitIncome = 8
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 canHitAir = true
 
@@ -67,8 +67,10 @@ skeleton = NodePath("../..")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.119158, 1.44407)
+cast_shadow = 0
 emitting = false
 amount = 200
+lifetime = 0.5
 one_shot = true
 mesh = SubResource("PlaneMesh_jkgh7")
 direction = Vector3(0, 0, 1)
