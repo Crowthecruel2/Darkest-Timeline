@@ -3,12 +3,7 @@ extends Control
 @onready var spawners = get_tree().get_nodes_in_group("spawner")
 @onready var unitCon = $Panel/Label/UnitContainer
 @onready var facCon = $Panel/Label/FactionContainer
-var units = []
-var factions = []
 var spawner
-
-@onready var union_but = $Panel/Label/FactionContainer/Union_But
-@onready var united_but = $Panel/Label/FactionContainer/Union_But
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +11,11 @@ func _ready():
 		if(spawners[s].team == playerTeam):
 			spawner = spawners[s]
 	
+	for f in Global.Factions.size():
+		var newButton = Button.new()
+		facCon.add_child(newButton)
+		newButton.text = Global.Faction_Names[f]
+		newButton.pressed.connect(spawner.set_faction,f)
 	
 	pass # Replace with function body.
 

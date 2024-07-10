@@ -54,6 +54,29 @@ func income():
 	metal = metal + income
 	print_debug(metal)
 
+func add_spesific_unit(unit_num):
+	var chooseUnit = units.unit_num
+	var chooseUnitCheck = load(chooseUnit).instantiate()
+	if(metal > chooseUnitCheck.unitCost):
+		var randx = randi_range(0,grid_x-1)
+		var randy = randi_range(0,grid_y-1)
+		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
+			grid[randx][randy] = chooseUnit
+			metal = metal - chooseUnitCheck.unitCost
+			chooseUnitCheck.queue_free()
+			add_random_unit_AI()
+		if(load(grid[randx][randy]) != load("res://Army/Empty/Empty_self_deleter.tscn") && random_unit_counter < 10):
+			random_unit_counter = random_unit_counter + 1
+			chooseUnitCheck.queue_free()
+			add_random_unit_AI()
+		else:
+			random_unit_counter = 0
+	else:
+		chooseUnitCheck.queue_free()
+
+func set_faction(faction):
+	units = Global.Factions[faction]
+
 func add_random_unit_AI():
 	var chooseUnit = units.pick_random()
 	var chooseUnitCheck = load(chooseUnit).instantiate()

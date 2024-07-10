@@ -33,11 +33,3 @@ offset_bottom = 40.0
 [node name="FactionContainer" type="GridContainer" parent="Panel/Label"]
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Union_But" type="Button" parent="Panel/Label/FactionContainer"]
-layout_mode = 2
-text = "Union"
-
-[node name="United_But" type="Button" parent="Panel/Label/FactionContainer"]
-layout_mode = 2
-text = "United Networks"
