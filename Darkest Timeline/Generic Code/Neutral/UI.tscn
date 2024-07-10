@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxs85rvblew7g"]
+[gd_scene load_steps=2 format=3 uid="uid://bj36nyi6apl4q"]
 
 [ext_resource type="Script" path="res://Generic Code/Neutral/UI.gd" id="1_x0gca"]
 
@@ -24,3 +24,20 @@ offset_top = 14.0
 offset_right = 58.0
 offset_bottom = 37.0
 text = "Metal: "
+
+[node name="UnitContainer" type="GridContainer" parent="Panel/Label"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FactionContainer" type="GridContainer" parent="Panel/Label"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Union_But" type="Button" parent="Panel/Label/FactionContainer"]
+layout_mode = 2
+text = "Union"
+
+[node name="United_But" type="Button" parent="Panel/Label/FactionContainer"]
+layout_mode = 2
+text = "United Networks"

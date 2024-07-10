@@ -7,6 +7,7 @@ var spawn_time
 var units = Global.Factions.pick_random()
 var random_unit_counter = 0
 @export var team:String
+@export var AiControlled:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +29,8 @@ func _process(delta):
 		spawn_time = Global.total_time
 
 func spawn():
-	add_random_unit_AI()
+	if(AiControlled):
+		add_random_unit_AI()
 	
 	if(get_tree().get_nodes_in_group(team).size() < Global.total_units):
 		for x in grid_x:

@@ -1,13 +1,22 @@
 extends Control
 @onready var playerTeam = self.get_parent().team
 @onready var spawners = get_tree().get_nodes_in_group("spawner")
+@onready var unitCon = $Panel/Label/UnitContainer
+@onready var facCon = $Panel/Label/FactionContainer
+var units = []
+var factions = []
 var spawner
+
+@onready var union_but = $Panel/Label/FactionContainer/Union_But
+@onready var united_but = $Panel/Label/FactionContainer/Union_But
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for s in spawners.size():
 		if(spawners[s].team == playerTeam):
 			spawner = spawners[s]
+	
+	
 	pass # Replace with function body.
 
 

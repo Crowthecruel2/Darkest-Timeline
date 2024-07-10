@@ -63,6 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.524981, 6.46511, 40.2799)
 [node name="Spawner" parent="." instance=ExtResource("4_45o5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, -100)
 team = "team2"
+AiControlled = true
 
 [node name="Spawner2" parent="." instance=ExtResource("4_45o5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, 100)
