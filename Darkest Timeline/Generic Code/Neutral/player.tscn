@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cactt4ymfs33c"]
+[gd_scene load_steps=3 format=3 uid="uid://cactt4ymfs33c"]
 
 [ext_resource type="Script" path="res://Generic Code/Neutral/Player_Controller.gd" id="1_63mfv"]
+[ext_resource type="PackedScene" uid="uid://cxs85rvblew7g" path="res://Generic Code/Neutral/UI.tscn" id="2_u1mgm"]
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 motion_mode = 1
@@ -9,3 +10,5 @@ team = "team1"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="Ui" parent="." instance=ExtResource("2_u1mgm")]

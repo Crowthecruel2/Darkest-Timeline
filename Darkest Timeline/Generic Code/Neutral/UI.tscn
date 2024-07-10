@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxs85rvblew7g"]
+
+[ext_resource type="Script" path="res://Generic Code/Neutral/UI.gd" id="1_x0gca"]
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x0gca")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 538.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 58.0
+offset_bottom = 37.0
+text = "Metal: "
