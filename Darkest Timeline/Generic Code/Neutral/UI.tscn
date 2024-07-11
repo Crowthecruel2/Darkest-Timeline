@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxs85rvblew7g"]
+[gd_scene load_steps=2 format=3 uid="uid://bj36nyi6apl4q"]
 
 [ext_resource type="Script" path="res://Generic Code/Neutral/UI.gd" id="1_x0gca"]
 
@@ -52,14 +52,26 @@ offset_bottom = 71.0
 
 [node name="Panel" type="Panel" parent="Panel"]
 visible = false
-layout_mode = 0
-offset_left = 260.0
-offset_top = -450.0
-offset_right = 860.0
-offset_bottom = -50.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -554.0
+offset_right = 300.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="Panel/Panel"]
-layout_mode = 0
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
 offset_bottom = 40.0
+grow_horizontal = 2
 columns = 15

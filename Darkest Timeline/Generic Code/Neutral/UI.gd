@@ -6,6 +6,7 @@ extends Control
 @onready var metal_label = $Panel/Label
 @onready var Income_Label = $Panel/Income_Label
 @onready var GridGrid = $Panel/Panel/GridContainer
+var gridButtons = []
 var unit_locked = false
 var spawner
 
@@ -29,6 +30,7 @@ func _ready():
 			GridGrid.add_child(newButton)
 			newButton.text = "{"+str(x+1)+","+str(y+1)+"}"
 			newButton.pressed.connect(spawner.add_spesific_unit.bind(x,y))
+			gridButtons.append(newButton)
 	
 	pass # Replace with function body.
 

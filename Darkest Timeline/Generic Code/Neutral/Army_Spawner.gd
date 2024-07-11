@@ -68,13 +68,13 @@ func select_unit(unit_num):
 func add_spesific_unit(pos_x,pos_y):
 	var chooseUnitCheck = load(chooseUnit).instantiate()
 	if(metal >= chooseUnitCheck.unitCost):
-		var randx = pos_x
-		var randy = pos_y
-		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
-			grid[randx][randy] = chooseUnit
+		
+		if(load(grid[pos_x][pos_y]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
+			grid[pos_x][pos_y] = chooseUnit
+			UI.gridButtons[(pos_y*15) + pos_x].icon = load("res://UI/red.png")
 			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
-		if(load(grid[randx][randy]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
+		if(load(grid[pos_x][pos_y]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
 			chooseUnitCheck.queue_free()
 	else:
 		chooseUnitCheck.queue_free()
