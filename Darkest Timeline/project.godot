@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 Global="*res://Generic Code/Neutral/Global.gd"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Darkest Timeline"

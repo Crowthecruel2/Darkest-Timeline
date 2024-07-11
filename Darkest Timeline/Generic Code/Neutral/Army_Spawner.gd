@@ -4,6 +4,7 @@ var grid_x = 15
 var grid_y = 5
 var metal = 100
 var spawn_time
+var chooseUnit
 var units = Global.Factions.pick_random()
 var random_unit_counter = 0
 var UIs
@@ -60,12 +61,15 @@ func income():
 	metal = metal + income_metal
 	print_debug(metal)
 
-func add_spesific_unit(unit_num):
-	var chooseUnit = units[unit_num]
+func select_unit(unit_num):
+	chooseUnit = units[unit_num]
+	UI.GridGrid.get_parent().visible = true
+
+func add_spesific_unit(pos_x,pos_y):
 	var chooseUnitCheck = load(chooseUnit).instantiate()
 	if(metal >= chooseUnitCheck.unitCost):
-		var randx = randi_range(0,grid_x-1)
-		var randy = randi_range(0,grid_y-1)
+		var randx = pos_x
+		var randy = pos_y
 		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
 			grid[randx][randy] = chooseUnit
 			metal = metal - chooseUnitCheck.unitCost
@@ -74,6 +78,7 @@ func add_spesific_unit(unit_num):
 			chooseUnitCheck.queue_free()
 	else:
 		chooseUnitCheck.queue_free()
+	UI.GridGrid.get_parent().visible = false
 
 func set_faction(faction):
 	units = Global.Factions[faction]
