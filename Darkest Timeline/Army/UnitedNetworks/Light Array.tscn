@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://djlp0rp5lgrqy"]
 
-[ext_resource type="Script" path="res://Army/UnitedNetworks/Light Array.gd" id="1_3p0ry"]
+[ext_resource type="Script" path="res://Generic Code/UnitedNetworks_Ai/Light_Array_Ai.gd" id="1_3p0ry"]
 [ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_2upb2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ebsi"]
@@ -24,8 +24,25 @@ material = SubResource("StandardMaterial3D_cfbv7")
 size = Vector2(0.2, 0.2)
 orientation = 2
 
-[node name="Light Array" type="CharacterBody3D"]
+[node name="Light Array" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
 script = ExtResource("1_3p0ry")
+unitName = "Light Array"
+unitMaxHealth = 25
+unitCurrentHealth = 25
+unitMagicArmor = 4
+unitTypes = ["Medium", "Mechanical"]
+moveSpeed = 1
+attackRange = 10
+attackSpeed = 0.5
+unitDamage = 1
+bonusDamageType = "Structure"
+bonusDamage = 1
+NavAgent = NodePath("NavigationAgent3D")
+unitCost = 150
+unitIncome = 15
+attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
+canHitAir = true
+unitDesc = "Crystaline tower that focuses light to do increasing damage. Good vs high health or armor enemies"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://kmwnh0f1xqrv"]
 
-[ext_resource type="Script" path="res://Generic Code/UnitedNetworks/Diplomat_Ai.gd" id="1_nx0uv"]
+[ext_resource type="Script" path="res://Generic Code/UnitedNetworks_Ai/Diplomat_Ai.gd" id="1_nx0uv"]
 [ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_42pxy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ebsi"]
@@ -39,7 +39,7 @@ min_value = -1.0
 _data = [Vector2(0.00561798, 0.450549), 0.0, 0.0, 0, 0, Vector2(0.488764, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Diplomat" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+[node name="UN_Diplomat" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
 script = ExtResource("1_nx0uv")
 unitName = "Diplomat"
 unitMaxHealth = 50
@@ -52,9 +52,9 @@ unitTypes = ["Light", "Mechanical"]
 moveSpeed = 2
 attackRange = 15
 attackSpeed = 5.0
-unitDamage = 20
+unitDamage = 10
 bonusDamageType = "Mechanical"
-bonusDamage = 10
+bonusDamage = 20
 NavAgent = NodePath("NavigationAgent3D")
 unitCost = 120
 unitIncome = 12

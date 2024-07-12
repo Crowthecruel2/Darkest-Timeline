@@ -2,10 +2,13 @@ extends "res://Generic Code/Neutral/Basic_Unit.gd"
 
 var Veterancy = 0
 var Spawn_Time = 0
+@onready var heliBody =  $CollisionShape3D
 @onready var blade = $CollisionShape3D/MeshInstance3D5
 
 func _ready():
 	Spawn_Time = Global.total_time
+	if(position.y < 10):
+		position.y = 15
 	if(unitOwner == "team1"):
 		$CollisionShape3D/MeshInstance3D3.material_override = Global.color_arr[0]
 		$CollisionShape3D/MeshInstance3D6.material_override = Global.color_arr[0]
@@ -29,6 +32,12 @@ func _process(delta):
 	lookat()
 	_attack(delta)
 	_death()
+
+func lookat():
+	if(target != null):
+		var target_vector = heliBody.global_position.direction_to(target.position)
+		var target_basis = Basis.looking_at(Vector3(target_vector))
+		heliBody.basis = basis.slerp(target_basis, 0.5)
 
 func veterancy_up():
 	Veterancy = Veterancy + 1
