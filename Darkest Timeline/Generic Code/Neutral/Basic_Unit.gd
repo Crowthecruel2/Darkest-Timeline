@@ -22,6 +22,7 @@ extends CharacterBody3D
 @export var unitIncome: int
 @export var attackParticle:CPUParticles3D
 @export var canHitAir:bool = false
+@export var unitDesc:String
 var enemies = []
 var kills = 0
 var regen_timer = 0
@@ -87,7 +88,7 @@ func _move(target):
 func lookat():
 	if(target != null):
 		var target_vector = global_position.direction_to(target.position)
-		var target_basis = Basis.looking_at(Vector3(target_vector.x,0,target_vector.z))
+		var target_basis = Basis.looking_at(Vector3(target_vector))
 		basis = basis.slerp(target_basis, 0.5)
 
 func _attack(delta):

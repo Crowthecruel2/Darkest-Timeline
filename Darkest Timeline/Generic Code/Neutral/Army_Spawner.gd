@@ -4,10 +4,12 @@ var grid_x = 15
 var grid_y = 5
 var metal = 100
 var spawn_time
+var chooseUnit
 var units = Global.Factions.pick_random()
 var random_unit_counter = 0
 var UIs
 var UI
+var income_metal = 0
 @export var team:String
 @export var AiControlled:bool
 
@@ -50,34 +52,33 @@ func spawn():
 	income()
 
 func income():
-	var income = 0
+	income_metal = 0
 	for x in 15:
 		for y in 5:
 			var unit_count = (load(grid[x][y])).instantiate()
-			income = income + unit_count.unitIncome
+			income_metal = income_metal + unit_count.unitIncome
 			unit_count.queue_free()
-	metal = metal + income
+	metal = metal + income_metal
 	print_debug(metal)
 
-func add_spesific_unit(unit_num):
-	var chooseUnit = units[unit_num]
+func select_unit(unit_num):
+	chooseUnit = units[unit_num]
+	UI.GridGrid.get_parent().visible = true
+
+func add_spesific_unit(pos_x,pos_y):
 	var chooseUnitCheck = load(chooseUnit).instantiate()
 	if(metal >= chooseUnitCheck.unitCost):
-		var randx = randi_range(0,grid_x-1)
-		var randy = randi_range(0,grid_y-1)
-		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
-			grid[randx][randy] = chooseUnit
+		
+		if(load(grid[pos_x][pos_y]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
+			grid[pos_x][pos_y] = chooseUnit
+			UI.gridButtons[(pos_y*15) + pos_x].icon = load("res://UI/red.png")
 			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
-			add_random_unit_AI()
-		if(load(grid[randx][randy]) != load("res://Army/Empty/Empty_self_deleter.tscn") && random_unit_counter < 10):
-			random_unit_counter = random_unit_counter + 1
+		if(load(grid[pos_x][pos_y]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
 			chooseUnitCheck.queue_free()
-			add_random_unit_AI()
-		else:
-			random_unit_counter = 0
 	else:
 		chooseUnitCheck.queue_free()
+	UI.GridGrid.get_parent().visible = false
 
 func set_faction(faction):
 	units = Global.Factions[faction]

@@ -1,28 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxs85rvblew7g"]
+[gd_scene load_steps=2 format=3 uid="uid://bj36nyi6apl4q"]
 
 [ext_resource type="Script" path="res://Generic Code/Neutral/UI.gd" id="1_x0gca"]
 
 [node name="Ui" type="Control" groups=["UI"]]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_x0gca")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_top = 538.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = -576.0
+offset_top = -110.0
+offset_right = 576.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 18.0
+offset_left = 20.0
 offset_top = 14.0
-offset_right = 58.0
+offset_right = 73.0
 offset_bottom = 37.0
 text = "Metal: "
 
@@ -40,3 +42,36 @@ offset_left = 120.0
 offset_top = 14.0
 offset_right = 160.0
 offset_bottom = 54.0
+
+[node name="Income_Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 48.0
+offset_right = 60.0
+offset_bottom = 71.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -554.0
+offset_right = 300.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+columns = 15
