@@ -2,7 +2,7 @@ extends Node3D
 var grid = []
 var grid_x = 15
 var grid_y = 5
-var metal = 100
+var metal = 200
 var spawn_time
 var chooseUnit
 var units = Global.Factions.pick_random()
@@ -10,6 +10,7 @@ var random_unit_counter = 0
 var UIs
 var UI
 var income_metal = 0
+var random_counter = 0
 @export var team:String
 @export var AiControlled:bool
 
@@ -21,9 +22,8 @@ func _ready():
 			UI = UIs[u]
 	spawn_time = Global.total_time
 	for x in grid_x:
-		grid.append([])
 		for y in grid_y:
-			grid[x].append("res://Army/Empty/Empty_self_deleter.tscn")
+			grid.append("res://Army/Empty/Empty_self_deleter.tscn")
 	
 	pass # Replace with function body.
 
@@ -37,15 +37,16 @@ func _process(delta):
 
 func spawn():
 	if(AiControlled):
-		add_random_unit_AI()
+		random_counter = randi_range(0,units.size()-1)
+		add_random_unit_AI(random_counter)
 	
-	if(get_tree().get_nodes_in_group(team).size() < Global.total_units):
+	if(get_tree().get_nodes_in_group(team).size() < Global.total_units/2):
 		for x in grid_x:
 			for y in grid_y:
-				var newUnit = load(grid[x][y])
+				var newUnit = load(grid[(y*15) + x])
 				if newUnit != preload("res://Army/Empty/Empty_self_deleter.tscn"):
 					
-					newUnit = load(grid[x][y]).instantiate()
+					newUnit = load(grid[(y*15) + x]).instantiate()
 					newUnit.unitOwner = team
 					newUnit.position = self.global_transform.origin + Vector3(x*5,2,y*5)
 					get_parent().add_child(newUnit)
@@ -55,7 +56,7 @@ func income():
 	income_metal = 0
 	for x in 15:
 		for y in 5:
-			var unit_count = (load(grid[x][y])).instantiate()
+			var unit_count = (load(grid[(y*15) + x])).instantiate()
 			income_metal = income_metal + unit_count.unitIncome
 			unit_count.queue_free()
 	metal = metal + income_metal
@@ -69,12 +70,14 @@ func add_spesific_unit(pos_x,pos_y):
 	var chooseUnitCheck = load(chooseUnit).instantiate()
 	if(metal >= chooseUnitCheck.unitCost):
 		
-		if(load(grid[pos_x][pos_y]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
-			grid[pos_x][pos_y] = chooseUnit
+		if(load(grid[(pos_y*15) + pos_x]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
+			grid[(pos_y*15) + pos_x] = chooseUnit
 			UI.gridButtons[(pos_y*15) + pos_x].icon = load("res://UI/red.png")
+			UI.gridButtons[(pos_y*15) + pos_x].tooltip_text = str(chooseUnitCheck.unitName)
+			UI.gridButtons[(pos_y*15) + pos_x].text = ""
 			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
-		if(load(grid[pos_x][pos_y]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
+		if(load(grid[(pos_y*15) + pos_x]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
 			chooseUnitCheck.queue_free()
 	else:
 		chooseUnitCheck.queue_free()
@@ -88,23 +91,24 @@ func set_faction(faction):
 	UI.unitCon.visible = true
 	UI.update_unit_array()
 
-func add_random_unit_AI():
-	var chooseUnit = units.pick_random()
+func add_random_unit_AI(random_counter):
+	var chooseUnit = units[random_counter]
 	var chooseUnitCheck = load(chooseUnit).instantiate()
 	if(metal >= chooseUnitCheck.unitCost):
 		var randx = randi_range(0,grid_x-1)
 		var randy = randi_range(0,grid_y-1)
-		if(load(grid[randx][randy]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
-			grid[randx][randy] = chooseUnit
+		if(load(grid[(randy*15) + randx]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
+			grid[(randy*15) + randx] = chooseUnit
 			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
-			add_random_unit_AI()
-		if(load(grid[randx][randy]) != load("res://Army/Empty/Empty_self_deleter.tscn") && random_unit_counter < 10):
+		if(load(grid[(randy*15) + randx]) != load("res://Army/Empty/Empty_self_deleter.tscn") && random_unit_counter < 10):
 			random_unit_counter = random_unit_counter + 1
 			chooseUnitCheck.queue_free()
-			add_random_unit_AI()
+			add_random_unit_AI(random_counter)
 		else:
 			random_unit_counter = 0
 	else:
-		chooseUnitCheck.queue_free()
-	
+		if(chooseUnit != units[0]):
+			random_counter = random_counter - 1
+			add_random_unit_AI(random_counter)
+	chooseUnitCheck.queue_free()

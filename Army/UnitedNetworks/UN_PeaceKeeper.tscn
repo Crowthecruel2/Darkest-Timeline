@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://2bf408citjqb"]
 
-[ext_resource type="Script" path="res://Generic Code/UnitedNetworks/UN_PeaceKeeper_AI.gd" id="1_x8r8j"]
+[ext_resource type="Script" path="res://Generic Code/UnitedNetworks_Ai/UN_PeaceKeeper_AI.gd" id="1_x8r8j"]
 [ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_jkrjw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ebsi"]
@@ -24,11 +24,11 @@ material = SubResource("StandardMaterial3D_cfbv7")
 size = Vector2(0.2, 0.2)
 orientation = 2
 
-[node name="UnPeaceKeeper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+[node name="Un_PeaceKeeper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
 script = ExtResource("1_x8r8j")
 unitName = "Peacekeeper"
-unitMaxHealth = 30
-unitCurrentHealth = 30
+unitMaxHealth = 20
+unitCurrentHealth = 20
 unitMaxEnergy = 10
 unitEnergyRegeneration = 1
 unitArmor = 3
