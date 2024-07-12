@@ -76,7 +76,7 @@ func _findTarget():
 					closestEnemy = enemies[x]
 			else:
 				closestEnemy = enemies[x]
-	target = closestEnemy
+	return closestEnemy
 
 func _move(target):
 	NavAgent.target_position = target.position
@@ -95,7 +95,7 @@ func _attack(delta):
 	if(target != null):
 		kill_timer = kill_timer + 1*delta
 		if(kill_timer > 5):
-			_findTarget()
+			target = _findTarget()
 			kill_timer = 0
 		if(self.position.distance_to(target.position) > attackRange && target != null):
 			_move(target)
@@ -124,7 +124,7 @@ func _attack(delta):
 			pass
 	if(target == null):
 		self.add_to_group(unitOwner,false)
-		_findTarget()
+		target = _findTarget()
 
 func _death():
 	if(unitCurrentHealth <= 0):
