@@ -68,20 +68,31 @@ func select_unit(unit_num):
 
 func add_spesific_unit(pos_x,pos_y):
 	var chooseUnitCheck = load(chooseUnit).instantiate()
+	var gridUnit = load(grid[(pos_y*15) + pos_x]).instantiate()
 	if(metal >= chooseUnitCheck.unitCost):
 		
-		if(load(grid[(pos_y*15) + pos_x]) == preload("res://Army/Empty/Empty_self_deleter.tscn")):
+		if(gridUnit == load("res://Army/Empty/Empty_self_deleter.tscn")):
 			grid[(pos_y*15) + pos_x] = chooseUnit
 			UI.gridButtons[(pos_y*15) + pos_x].icon = load("res://UI/red.png")
-			UI.gridButtons[(pos_y*15) + pos_x].tooltip_text = str(chooseUnitCheck.unitName)
+			UI.gridButtons[(pos_y*15) + pos_x].tooltip_text = str(chooseUnitCheck.unitName) + "\n Sell Value: "+ str(chooseUnitCheck.unitCost/2)
 			UI.gridButtons[(pos_y*15) + pos_x].text = ""
 			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
-		if(load(grid[(pos_y*15) + pos_x]) != load("res://Army/Empty/Empty_self_deleter.tscn")):
+		if(gridUnit != load("res://Army/Empty/Empty_self_deleter.tscn")):
+			
+			metal = metal + (gridUnit.unitCost/2)
+			grid[(pos_y*15) + pos_x] = chooseUnit
+			UI.gridButtons[(pos_y*15) + pos_x].icon = load("res://UI/red.png")
+			UI.gridButtons[(pos_y*15) + pos_x].tooltip_text = str(chooseUnitCheck.unitName) + "\n Sell Value: "+ str(chooseUnitCheck.unitCost/2)
+			UI.gridButtons[(pos_y*15) + pos_x].text = ""
+			metal = metal - chooseUnitCheck.unitCost
 			chooseUnitCheck.queue_free()
 	else:
 		chooseUnitCheck.queue_free()
-	UI.GridGrid.get_parent().visible = false
+	if(!Input.is_action_pressed("Queue_Commands")):
+		UI.GridGrid.get_parent().visible = false
+	
+	gridUnit.queue_free()
 
 func set_faction(faction):
 	units = Global.Factions[faction]
