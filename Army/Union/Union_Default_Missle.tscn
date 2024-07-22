@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://t71lul5hxp23"]
+
+[ext_resource type="Script" path="res://Army/Union/Union_Default_Missle_Ai.gd" id="1_704e3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyy5g"]
+transparency = 1
+albedo_color = Color(0.594994, 0.287859, 0.194015, 1)
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hn8fu"]
+material = SubResource("StandardMaterial3D_jyy5g")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbi1j"]
+albedo_color = Color(0.400226, 0, 0.0756006, 1)
+emission_enabled = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x7okg"]
+material = SubResource("StandardMaterial3D_pbi1j")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hscpy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m5ft6"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7laav"]
+
+[node name="Default_Union_Missle" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+gravity_scale = 0.0
+script = ExtResource("1_704e3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 20.01
+avoidance_enabled = true
+radius = 1.0
+neighbor_distance = 3.0
+max_neighbors = 20
+time_horizon_agents = 2.0
+time_horizon_obstacles = 1.0
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.495145)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.2
+randomness = 0.2
+lifetime_randomness = 0.2
+mesh = SubResource("PlaneMesh_hn8fu")
+direction = Vector3(0, 0, -1)
+spread = 10.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+
+[node name="Explosion_particle" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 400
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+mesh = SubResource("PlaneMesh_x7okg")
+direction = Vector3(0, 1, 0)
+spread = 30.0
+gravity = Vector3(0, -39.2, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 100.0
+angular_velocity_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+hue_variation_min = -0.25
+hue_variation_max = 0.25
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.65452e-08, 0, 1.10435)
+shape = SubResource("SphereShape3D_hscpy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_m5ft6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CylinderMesh_7laav")

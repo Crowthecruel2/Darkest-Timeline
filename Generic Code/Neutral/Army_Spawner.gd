@@ -2,7 +2,7 @@ extends Node3D
 var grid = []
 var grid_x = 15
 var grid_y = 5
-var metal = 200
+var metal = 100
 var spawn_time
 var chooseUnit
 var units = Global.Factions.pick_random()
