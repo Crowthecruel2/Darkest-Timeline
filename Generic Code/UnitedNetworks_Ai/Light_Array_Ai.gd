@@ -10,13 +10,13 @@ func _ready():
 func _process(delta):
 	_death()
 	lookat()
-	_light_attack(delta)
+	_attack(delta)
 
-func _light_attack(delta):
+func _attack(delta):
 	if(target != null):
 		kill_timer = kill_timer + 1*delta
 		if(kill_timer > 5):
-			_findTarget()
+			target = _findTarget()
 			kill_timer = 0
 		if(self.position.distance_to(target.position) > attackRange && target != null):
 			_move(target)
@@ -48,5 +48,6 @@ func _light_attack(delta):
 				attack_cooldown = attack_cooldown + 1*delta
 			pass
 	if(target == null):
+		
 		self.add_to_group(unitOwner,false)
-		_findTarget()
+		target = _findTarget()

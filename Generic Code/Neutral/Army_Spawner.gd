@@ -117,6 +117,8 @@ func add_random_unit_AI(random_counter):
 			chooseUnitCheck.queue_free()
 			add_random_unit_AI(random_counter)
 		else:
+			grid[(randy*15) + randx] = chooseUnit
+			metal = metal - chooseUnitCheck.unitCost
 			random_unit_counter = 0
 	else:
 		if(chooseUnit != units[0]):
