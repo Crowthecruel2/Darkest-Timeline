@@ -8,12 +8,9 @@ var landmines = false
 var exploding = false
 func _ready():
 	Spawn_Time = Global.total_time
-	if(unitOwner == "team1"):
-		$CollisionShape3D/MeshInstance3D2.material_override = Global.color_arr[0]
-		$CollisionShape3D/MeshInstance3D4.material_override = Global.color_arr[0]
-	if(unitOwner == "team2"):
-		$CollisionShape3D/MeshInstance3D2.material_override = Global.color_arr[1]
-		$CollisionShape3D/MeshInstance3D4.material_override = Global.color_arr[1]
+	body.append($CollisionShape3D/MeshInstance3D2)
+	body.append($CollisionShape3D/MeshInstance3D4)
+	_set_body_color()
 
 func _process(delta):
 	

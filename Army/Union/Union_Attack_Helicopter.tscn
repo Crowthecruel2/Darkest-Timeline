@@ -46,7 +46,6 @@ unitIncome = 10
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 canHitAir = true
 unitDesc = "Light attack helicopter of the Union army. Strong vs Infantry"
-body = [NodePath("CollisionShape3D/MeshInstance3D3"), NodePath("CollisionShape3D/MeshInstance3D6"), NodePath("CollisionShape3D/MeshInstance3D7")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)

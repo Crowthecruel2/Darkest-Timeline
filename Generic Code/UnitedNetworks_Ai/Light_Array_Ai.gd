@@ -2,10 +2,8 @@ extends "res://Generic Code/Neutral/Basic_Unit.gd"
 var damage_ramp = 0
 
 func _ready():
-	if(unitOwner == "team1"):
-		$CollisionShape3D/MeshInstance3D.material_override = Global.color_arr[0]
-	if(unitOwner == "team2"):
-		$CollisionShape3D/MeshInstance3D.material_override = Global.color_arr[1]
+	body.append($CollisionShape3D/MeshInstance3D)
+	_set_body_color()
 
 func _process(delta):
 	_death()

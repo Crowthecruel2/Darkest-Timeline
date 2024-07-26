@@ -12,10 +12,8 @@ var aura_active = false
 
 func _ready():
 	Spawn_Time = Global.total_time
-	if(unitOwner == "team1"):
-		$CollisionShape3D/MeshInstance3D3.material_override = Global.color_arr[0]
-	if(unitOwner == "team2"):
-		$CollisionShape3D/MeshInstance3D3.material_override = Global.color_arr[1]
+	body.append($CollisionShape3D/MeshInstance3D3)
+	_set_body_color()
 
 func _process(delta):
 	if(Global.total_time >= Spawn_Time+30 && Veterancy == 0 && kills >= 1):

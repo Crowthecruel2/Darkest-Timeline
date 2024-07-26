@@ -23,8 +23,7 @@ extends CharacterBody3D
 @export var attackParticle:CPUParticles3D
 @export var canHitAir:bool = false
 @export var unitDesc:String
-@export var body = []
-var bodypart:Node
+var body = []
 var enemies = []
 var kills = 0
 var regen_timer = 0
@@ -44,11 +43,9 @@ func _set_body_color():
 	self.add_to_group(unitOwner,false)
 	for b in body.size():
 		if(unitOwner == "team1"):
-			bodypart.get_node(body[b])
-			bodypart.material_override = Global.color_arr[0]
+			body[b].material_override = Global.color_arr[0]
 		if(unitOwner == "team2"):
-			bodypart.get_node(body[b])
-			bodypart.material_override = Global.color_arr[1]
+			body[b].material_override = Global.color_arr[1]
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

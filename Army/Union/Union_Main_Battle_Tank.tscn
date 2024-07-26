@@ -40,7 +40,6 @@ unitCost = 400
 unitIncome = 20
 attackParticle = NodePath("CollisionShape3D/MeshInstance3D3/MeshInstance3D2/CPUParticles3D")
 unitDesc = "A rusted through piece of shit. Strongs vs medium vehicles"
-body = [NodePath("CollisionShape3D/MeshInstance3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.385273, 0)

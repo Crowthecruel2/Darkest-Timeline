@@ -44,7 +44,6 @@ unitCost = 400
 unitIncome = 40
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 canHitAir = true
-body = [NodePath("CollisionShape3D/MeshInstance3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

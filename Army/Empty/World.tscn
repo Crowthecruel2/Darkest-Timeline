@@ -80,4 +80,3 @@ radius = 25
 [node name="Unity Walker" parent="." instance=ExtResource("6_pesef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152729, 9.53674e-07, 122.123)
 unitOwner = "team1"
-body = []

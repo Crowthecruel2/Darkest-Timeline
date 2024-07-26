@@ -43,7 +43,6 @@ unitCost = 200
 unitIncome = 10
 attackParticle = NodePath("CPUParticles3D")
 unitDesc = "In charge of the other troops. Promotes them in veterancy making them stronger"
-body = [NodePath("CollisionShape3D/MeshInstance3D3")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
