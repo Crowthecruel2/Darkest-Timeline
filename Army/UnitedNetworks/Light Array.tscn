@@ -43,6 +43,7 @@ unitIncome = 15
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 canHitAir = true
 unitDesc = "Crystaline tower that focuses light to do increasing damage. Good vs high health or armor enemies"
+body = [NodePath("CollisionShape3D/MeshInstance3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -80,8 +81,8 @@ color = Color(0, 0.45797, 0.801184, 1)
 [node name="CPUParticles3D2" type="CPUParticles3D" parent="CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 cast_shadow = 0
-amount = 50
-lifetime = 10.0
+amount = 10
+lifetime = 5.0
 randomness = 0.5
 lifetime_randomness = 0.2
 mesh = SubResource("PlaneMesh_jkgh7")

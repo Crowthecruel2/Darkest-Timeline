@@ -69,6 +69,7 @@ func veterancy_up():
 	if(Veterancy == 1):
 		pass
 	if(Veterancy == 2):
-		pass
+		moveSpeed = moveSpeed + 2
 	if(Veterancy == 3):
-		pass
+		unitDamage = unitDamage + 5
+		bonusDamage = bonusDamage + 10

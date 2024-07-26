@@ -60,6 +60,7 @@ unitCost = 120
 unitIncome = 12
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 unitDesc = "Floating drone armed with a massive cannon. Great for diplomacy. Strong vs Heavy armor"
+body = [NodePath("CollisionShape3D/MeshInstance3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

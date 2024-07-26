@@ -1,22 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://2bf408citjqb"]
+[gd_scene load_steps=9 format=3 uid="uid://dnjgu21mlhwyh"]
 
-[ext_resource type="Script" path="res://Generic Code/UnitedNetworks_Ai/UN_PeaceKeeper_AI.gd" id="1_x8r8j"]
-[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_jkrjw"]
+[ext_resource type="Script" path="res://Generic Code/UnitedNetworks_Ai/Unity Walker.gd" id="1_o5rps"]
+[ext_resource type="Material" uid="uid://cimtp6baotv0u" path="res://Materials/Union/Home_Building/Home_Building_Legs.tres" id="2_8px8p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ebsi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_iaoeg"]
-size = Vector3(1, 2, 1)
+size = Vector3(5, 1.5, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wljkg"]
-size = Vector3(0.9, 0.25, 0.9)
+size = Vector3(2, 4, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0yk0n"]
-size = Vector3(0.5, 0.5, 1)
+size = Vector3(1, 1, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfbv7"]
 transparency = 1
-albedo_color = Color(0.788235, 0.0392157, 0, 1)
+vertex_color_use_as_albedo = true
 billboard_mode = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jkgh7"]
@@ -24,27 +24,26 @@ material = SubResource("StandardMaterial3D_cfbv7")
 size = Vector2(0.2, 0.2)
 orientation = 2
 
-[node name="Un_PeaceKeeper" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
-script = ExtResource("1_x8r8j")
-unitName = "Peacekeeper"
-unitMaxHealth = 20
-unitCurrentHealth = 20
-unitMaxEnergy = 10
-unitEnergyRegeneration = 1
-unitArmor = 3
-unitTypes = ["Light", "Mechanical"]
+[node name="Unity Walker" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "attackParticle")]
+script = ExtResource("1_o5rps")
+ConvertRange = 8
+unitName = "Unity Walker"
+unitMaxHealth = 80
+unitCurrentHealth = 80
+unitHealthRegeneration = 2
+unitArmor = 5
+unitMagicArmor = 5
+unitTypes = ["Heavy", "Mechanical"]
 moveSpeed = 3
-attackRange = 10
-attackSpeed = 2.0
-unitDamage = 10
-bonusDamageType = "Light"
-bonusDamage = 5
+attackRange = 15
+attackSpeed = 5.0
+bonusDamageType = "Structure"
+bonusDamage = 50
 NavAgent = NodePath("NavigationAgent3D")
-unitCost = 80
-unitIncome = 8
+unitCost = 400
+unitIncome = 40
 attackParticle = NodePath("CollisionShape3D/CPUParticles3D")
 canHitAir = true
-unitDesc = "Heavily armored basic trooper robot. Strong vs infantry"
 body = [NodePath("CollisionShape3D/MeshInstance3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -52,27 +51,28 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 shape = SubResource("CapsuleShape3D_3ebsi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4715, 0)
 mesh = SubResource("BoxMesh_iaoeg")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657906, 0.180263)
-material_override = ExtResource("2_jkrjw")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04548e-07, 1.46337, -1.19589)
+material_override = ExtResource("2_8px8p")
 mesh = SubResource("BoxMesh_wljkg")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.108624, 0.902338)
-material_override = ExtResource("2_jkrjw")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.0108, 0)
+material_override = ExtResource("2_8px8p")
 mesh = SubResource("BoxMesh_0yk0n")
 skeleton = NodePath("../..")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.119158, 1.44407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70711e-08, 4.61533, 0.53843)
 cast_shadow = 0
 emitting = false
 amount = 200
-lifetime = 0.5
+lifetime = 0.25
 one_shot = true
 mesh = SubResource("PlaneMesh_jkgh7")
 direction = Vector3(0, 0, 1)
@@ -80,5 +80,6 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 100.0
+color = Color(0, 0.45797, 0.801184, 1)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

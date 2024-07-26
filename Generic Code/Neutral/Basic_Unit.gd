@@ -23,6 +23,8 @@ extends CharacterBody3D
 @export var attackParticle:CPUParticles3D
 @export var canHitAir:bool = false
 @export var unitDesc:String
+@export var body = []
+var bodypart:Node
 var enemies = []
 var kills = 0
 var regen_timer = 0
@@ -33,9 +35,21 @@ var retreating:int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.add_to_group(unitOwner,false)
+	_set_body_color()
 	pass # Replace with function body.
 
+func _set_body_color():
+	self.remove_from_group("team1")
+	self.remove_from_group("team2")
+	self.add_to_group(unitOwner,false)
+	for b in body.size():
+		if(unitOwner == "team1"):
+			bodypart.get_node(body[b])
+			bodypart.material_override = Global.color_arr[0]
+		if(unitOwner == "team2"):
+			bodypart.get_node(body[b])
+			bodypart.material_override = Global.color_arr[1]
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
