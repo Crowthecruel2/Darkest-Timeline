@@ -63,7 +63,7 @@ func lookat():
 func veterancy_up():
 	Veterancy = Veterancy + 1
 	if(Veterancy == 1):
-		pass
+		Missle_unlock = true
 	if(Veterancy == 2):
 		moveSpeed = moveSpeed + 2
 	if(Veterancy == 3):

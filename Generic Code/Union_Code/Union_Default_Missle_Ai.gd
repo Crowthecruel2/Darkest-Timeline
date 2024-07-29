@@ -2,11 +2,41 @@ extends RigidBody3D
 var target
 var speed = 3
 var damage = 20
+var enemies = []
+var canHitAir = true
 @onready var collider:Area3D = $Area3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func _findTarget():
+	var closestEnemy
+	if(self.get_tree().get_nodes_in_group("team1").has(self)):
+		enemies = self.get_tree().get_nodes_in_group("team2")
+	if(self.get_tree().get_nodes_in_group("team2").has(self)):
+		enemies = self.get_tree().get_nodes_in_group("team1")
+	
+	for x in enemies.size():
+		if(canHitAir == true && enemies[x].moveType == 1):
+			if(closestEnemy != null):
+				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
+					closestEnemy = enemies[x]
+			else:
+				closestEnemy = enemies[x]
+		if(canHitAir == true && enemies[x].moveType == 0):
+			if(closestEnemy != null):
+				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
+					closestEnemy = enemies[x]
+			else:
+				closestEnemy = enemies[x]
+		if(canHitAir == false && enemies[x].moveType == 0):
+			if(closestEnemy != null):
+				if(self.position.distance_to(enemies[x].position) < self.position.distance_to(closestEnemy.position)):
+					closestEnemy = enemies[x]
+			else:
+				closestEnemy = enemies[x]
+	return closestEnemy
 
 func explode():
 	var team1 = get_tree().get_nodes_in_group("team1")
@@ -42,3 +72,5 @@ func _process(delta):
 		rocket(delta)
 		if(collider.get_overlapping_bodies().has(target)):
 			explode()
+	if(target == null):
+		target = _findTarget()
